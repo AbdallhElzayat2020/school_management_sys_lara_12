@@ -1,6 +1,6 @@
 School management system
 ========================
-This is a school management system built with Python and Flask. It allows users to manage students, teachers, courses, and grades.
+    This is a school management system built with PHP and Laravel 12 , Mysql as DB. It allows users to manage students, teachers, courses, and grades.
 Features
 --------
 
