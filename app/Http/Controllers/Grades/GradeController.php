@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Grades\StoreGradeRequest;
 use App\Http\Requests\Grades\UpdateGradeRequest;
 use App\Models\Grade;
-use Illuminate\Http\Request;
 
 class GradeController extends Controller
 {
@@ -20,12 +19,13 @@ class GradeController extends Controller
 
     public function store(StoreGradeRequest $request): \Illuminate\Http\RedirectResponse
     {
-//        if (Grade::where('name->ar',$request->name['ar'])->orWhere('name->en',$request->name['en'])->exists()) {
+
+        // for unique validation with out any package
+
+//        if (Grade::where('name->ar', $request->name['ar'])->orWhere('name->en', $request->name['en'])->exists()) {
 //            toastr()->error(__('tables.already_exists'));
 //            return redirect()->back()->with('error', __('tables.already_exists'));
 //        }
-
-        
 
         try {
             $grade = Grade::create([
@@ -41,7 +41,7 @@ class GradeController extends Controller
             ]);
             if (!$grade) {
                 toastr()->success(__('tables.error_msg'));
-                return redirect()->back()->with('error', __('tables.error_msg'));
+                return redirect()->back();
             }
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', __('tables.error_msg' . ' ' . $exception->getMessage()));
@@ -89,7 +89,7 @@ class GradeController extends Controller
         return redirect()->route('grades.index');
     }
 
-    public function changeStatus($id)
+    public function changeStatus($id): \Illuminate\Http\RedirectResponse
     {
         $grade = Grade::findOrFail($id);
         if (!$grade) {

@@ -19,7 +19,6 @@ class StoreGradeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //  UniqueTranslationRule::for('roles')->ignore($this->route('role'))
             'name.ar' => ['required', 'string', 'max:255', 'min:2', UniqueTranslationRule::for('grades')->ignore($this->route('grade'))],
             'name.en' => ['required', 'string', 'max:255', 'min:2', UniqueTranslationRule::for('grades')->ignore($this->route('grade'))],
             'status' => ['required', 'in:active,inactive'],

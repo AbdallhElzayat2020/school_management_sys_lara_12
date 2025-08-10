@@ -12,9 +12,8 @@ return new class extends Migration {
     {
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
-
-            $table->string('name')->unique();
-
+            $table->string('class_name')->unique();
+            $table->enum('status', ['active', 'inactive'])->default('active');
             $table->foreignId('grade_id')->constrained('grades')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
