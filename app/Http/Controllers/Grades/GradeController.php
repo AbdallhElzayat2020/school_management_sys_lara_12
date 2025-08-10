@@ -10,23 +10,24 @@ use Illuminate\Http\Request;
 
 class GradeController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $grades = Grade::all();
         return view('pages.grades.index', compact('grades'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoreGradeRequest $request): \Illuminate\Http\RedirectResponse
     {
+//        if (Grade::where('name->ar',$request->name['ar'])->orWhere('name->en',$request->name['en'])->exists()) {
+//            toastr()->error(__('tables.already_exists'));
+//            return redirect()->back()->with('error', __('tables.already_exists'));
+//        }
+
+        
 
         try {
-
             $grade = Grade::create([
                 'name' => [
                     'ar' => $request->name['ar'],
@@ -74,12 +75,8 @@ class GradeController extends Controller
 
         toastr()->success(__('tables.update_msg'));
         return redirect()->route('grades.index');
-
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
         $grade = Grade::findOrFail($id);
@@ -98,6 +95,7 @@ class GradeController extends Controller
         if (!$grade) {
             abort(404, __('messages.not_found'));
         }
+
         if ($grade->status == 'active') {
             $grade->update([
                 'status' => 'inactive',

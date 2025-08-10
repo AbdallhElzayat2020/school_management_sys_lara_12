@@ -14,6 +14,7 @@
                 <!-- add_form -->
                 <form action="{{ route('grades.store') }}" method="POST">
                     @csrf
+
                     <div class="row">
                         <div class="col">
                             <label for="grade_name_ar" class="mr-sm-2">{{ trans('grades.grade_name_ar') }}:</label>
@@ -53,6 +54,7 @@
                             data-dismiss="modal">{{ trans('tables.cancel') }}</button>
                         <button type="submit" class="btn btn-success">{{ trans('tables.save') }}</button>
                     </div>
+
                 </form>
             </div>
         </div>

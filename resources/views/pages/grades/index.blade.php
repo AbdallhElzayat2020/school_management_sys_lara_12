@@ -81,19 +81,20 @@
                                         @endif
                                     </td>
                                     <td>{{ $grade->getTranslation('notes', app()->getLocale()) }}</td>
-                                    <td>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                    <td class="d-flex justify-content-center align-items-center">
+                                        <button type="button" class="btn btn-info mx-1" data-toggle="modal"
                                                 data-target="#edit{{ $grade->id }}"
                                                 title="{{ trans('grades.edit_grade') }}">
                                             <i class="fa fa-edit"></i>
                                         </button>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                        <button type="button" class="btn btn-danger mx-1" data-toggle="modal"
                                                 data-target="#delete_grade{{ $grade->id }}"
                                                 title="{{ trans('grades.delete_grade') }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
-                                        <a href="#" data-toggle="modal"
-                                           data-target="#change_status_{{ $grade->id }}">
+
+                                        <button type="button" class="btn btn-info mx-1" data-toggle="modal"
+                                                data-target="#change_status_{{ $grade->id }}">
                                             @if ($grade->status == 'active')
                                                 <span class="badge badge-success p-1" style="font-size: 18px!important;">
                                                     <i class="fas fa-ban"></i>
@@ -103,7 +104,7 @@
                                                     <i class="fas fa-play"></i>
                                                 </span>
                                             @endif
-                                        </a>
+                                        </button>
                                     </td>
                                 </tr>
 

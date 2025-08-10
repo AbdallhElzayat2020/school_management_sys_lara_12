@@ -14,4 +14,5 @@ return [
     'warning_delete' => 'هل أنت متأكد من حذف هذا العنصر؟',
     'change_status' => 'تغيير الحالة',
     'change_status_warning' => 'هل أنت متأكد من تغيير الحالة',
+    'already_exists'=> 'هذا العنصر موجود بالفعل',
 ];

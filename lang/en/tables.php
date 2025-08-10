@@ -15,4 +15,5 @@ return [
     'warning_delete' => 'Are you sure you want to delete this item?',
     'change_status' => 'Change Status',
     'change_status_warning' => 'Are you sure you want to change the status',
+    'already_exists' => 'This item already exists',
 ];
