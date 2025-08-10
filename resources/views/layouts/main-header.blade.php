@@ -32,7 +32,7 @@
         <li class="nav-item d-flex align-items-center justify-content-center">
             <div class="btn-group">
                 <button type="button" class="btn btn-light btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{__('dashboard.change_language')}}
+                    {{__('dashboard.change_language')}}
                 </button>
                 <div class="dropdown-menu">
                     @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
@@ -96,7 +96,7 @@
         <li class="nav-item dropdown mr-30">
             <a class="nav-link nav-pill user-avatar" data-toggle="dropdown" href="#" role="button"
                aria-haspopup="true" aria-expanded="false">
-                <img src="assets/images/profile-avatar.jpg" alt="avatar">
+                <img src="{{asset('assets/images/profile-avatar.jpg')}}" alt="avatar">
             </a>
             <div class="dropdown-menu dropdown-menu-right">
                 <div class="dropdown-header">
@@ -115,7 +115,11 @@
                         class="badge badge-info">6</span> </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#"><i class="text-info ti-settings"></i>Settings</a>
-                <a class="dropdown-item" href="#"><i class="text-danger ti-unlock"></i>Logout</a>
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <a class="dropdown-item" href="javascript:void(0)" onclick="event.preventDefault(); this.closest('form').submit();"><i class="text-primary ti-user"></i>{{ __('dashboard.logout') }}</a>
+                </form>
+
             </div>
         </li>
     </ul>
