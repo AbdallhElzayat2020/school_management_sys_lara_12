@@ -56,53 +56,68 @@
 
                     <div class="table-responsive">
                         <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50"
-                            style="text-align: center">
+                               style="text-align: center">
                             <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>{{ trans('grades.grade_name') }}</th>
-                                    <th>{{ trans('grades.grade_status') }}</th>
-                                    <th>{{ trans('grades.grade_notes') }}</th>
-                                    <th>{{ trans('grades.actions') }}</th>
-                                </tr>
+                            <tr>
+                                <th>#</th>
+                                <th>{{ trans('grades.grade_name') }}</th>
+                                <th>{{ trans('grades.grade_status') }}</th>
+                                <th>{{ trans('grades.grade_notes') }}</th>
+                                <th>{{ trans('grades.actions') }}</th>
+                            </tr>
                             </thead>
                             <tbody>
 
-                                @forelse($grades as $index=> $grade)
-                                    <tr>
+                            @forelse($grades as $index=> $grade)
+                                <tr>
 
-                                        <td>{{ $index + 1 }}</td>
-                                        <td>{{ $grade->getTranslation('name', app()->getLocale()) }}</td>
-                                        <td>
-                                            @if ($grade->status === 'active')
-                                                <span class="badge badge-success">{{ trans('grades.active') }}</span>
-                                            @else
-                                                <span class="badge badge-danger">{{ trans('grades.inactive') }}</span>
-                                            @endif
-                                        </td>
-                                        <td>{{ $grade->getTranslation('notes', app()->getLocale()) }}</td>
-                                        <td>
-                                            <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $grade->getTranslation('name', app()->getLocale()) }}</td>
+                                    <td>
+                                        @if ($grade->status === 'active')
+                                            <span class="badge badge-success">{{ trans('grades.active') }}</span>
+                                        @else
+                                            <span class="badge badge-danger">{{ trans('grades.inactive') }}</span>
+                                        @endif
+                                    </td>
+                                    <td>{{ $grade->getTranslation('notes', app()->getLocale()) }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
                                                 data-target="#edit{{ $grade->id }}"
                                                 title="{{ trans('grades.edit_grade') }}">
-                                                <i class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            <i class="fa fa-edit"></i>
+                                        </button>
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                                 data-target="#delete_grade{{ $grade->id }}"
                                                 title="{{ trans('grades.delete_grade') }}">
-                                                <i class="fa fa-trash"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
+                                            <i class="fa fa-trash"></i>
+                                        </button>
+                                        <a href="#" data-toggle="modal"
+                                           data-target="#change_status_{{ $grade->id }}">
+                                            @if ($grade->status == 'active')
+                                                <span class="badge badge-success p-1" style="font-size: 18px!important;">
+                                                    <i class="fas fa-ban"></i>
+                                                </span>
+                                            @else
+                                                <span class="badge badge-danger p-1" style="font-size: 18px!important;">
+                                                    <i class="fas fa-play"></i>
+                                                </span>
+                                            @endif
+                                        </a>
+                                    </td>
+                                </tr>
 
-                                    <!-- edit_modal_Grade -->
-                                    @include('pages.grades.edit')
-                                    @include('pages.grades.delete')
-                                @empty
-                                    <tr>
-                                        <td colspan="5">{{ __('tables.no_found') }}</td>
-                                    </tr>
-                                @endforelse
+                                <!-- Models Popups  -->
+                                @include('pages.grades.edit')
+                                @include('pages.grades.delete')
+                                @include('pages.grades.change_status')
+                                <!-- Models Popups  -->
+
+                            @empty
+                                <tr>
+                                    <td colspan="5">{{ __('tables.no_found') }}</td>
+                                </tr>
+                            @endforelse
                         </table>
                     </div>
                 </div>

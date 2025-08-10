@@ -31,6 +31,8 @@ Route::group(
 
     Route::resource('grades', GradeController::class);
 
+    Route::post('changeStatus/{id}', [GradeController::class, 'changeStatus'])->name('grades.changeStatus');
+
 });
 
 

@@ -91,4 +91,24 @@ class GradeController extends Controller
         toastr()->success(__('tables.delete_msg'));
         return redirect()->route('grades.index');
     }
+
+    public function changeStatus($id)
+    {
+        $grade = Grade::findOrFail($id);
+        if (!$grade) {
+            abort(404, __('messages.not_found'));
+        }
+        if ($grade->status == 'active') {
+            $grade->update([
+                'status' => 'inactive',
+            ]);
+            toastr()->success(__('tables.update_msg'));
+            return redirect()->back();
+        }
+        $grade->update([
+            'status' => 'active',
+        ]);
+        toastr()->success(__('tables.update_msg'));
+        return redirect()->back();
+    }
 }
