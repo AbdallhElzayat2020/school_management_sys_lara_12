@@ -15,11 +15,7 @@ class CreateGradeReuest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
+
     public function rules(): array
     {
         return [
@@ -54,7 +50,7 @@ class CreateGradeReuest extends FormRequest
         ];
     }
 
-    public function attributes()
+    public function attributes(): array
     {
         return [
             'name.ar' => 'اسم المرحلة الدراسية بالعربية',

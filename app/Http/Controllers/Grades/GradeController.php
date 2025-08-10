@@ -24,21 +24,29 @@ class GradeController extends Controller
     public function store(CreateGradeReuest $request)
     {
 
-        $grade = Grade::create([
-            'name' => [
-                'ar' => $request->name['ar'],
-                'en' => $request->name['en'],
-            ],
-            'status' => $request->status,
-            'notes' => [
-                'ar' => $request->notes['ar'],
-                'en' => $request->notes['en'],
-            ],
-        ]);
-        if (!$grade) {
-            return redirect()->back()->with('error', __('tables.error_msg'));
+        try {
+
+            $grade = Grade::create([
+                'name' => [
+                    'ar' => $request->name['ar'],
+                    'en' => $request->name['en'],
+                ],
+                'status' => $request->status,
+                'notes' => [
+                    'ar' => $request->notes['ar'],
+                    'en' => $request->notes['en'],
+                ],
+            ]);
+            if (!$grade) {
+                toastr()->success(__('tables.error_msg'));
+                return redirect()->back()->with('error', __('tables.error_msg'));
+            }
+        } catch (\Exception $exception) {
+            return redirect()->back()->with('error', __('tables.error_msg' . ' ' . $exception->getMessage()));
         }
-        return redirect()->route('grades.index')->with('success', __('tables.success_msg'));
+        toastr()->success(__('tables.success_msg'));
+
+        return redirect()->route('grades.index');
 
     }
 

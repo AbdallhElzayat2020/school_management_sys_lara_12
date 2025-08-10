@@ -2,6 +2,8 @@
 return [
 
     'success_msg' => 'completed successfully',
+    'update_msg' => 'data updated successfully',
+    'delete_msg' => 'data deleted successfully',
     'error_msg' => 'an error occurred please try again',
     'no_found' => 'no data found',
     'save' => 'Save',

@@ -22,13 +22,13 @@
                         </div>
                         <div class="col">
                             <label for="name_en" class="mr-sm-2">{{ trans('grades.grade_name_en') }}:</label>
-                            <input type="text" value="{{ old('name.en') }}" class="form-control" name="name[en]" required>
+                            <input type="text" value="{{ old('name.en') }}" class="form-control" name="name[en]" >
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="status" class="mr-sm-2">{{ trans('grades.grade_status') }}:</label>
-                        <select class="form-control" name="status" id="status" required>
+                        <select class="form-control" name="status" id="status" >
                             <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>
                                 {{ trans('grades.active') }}</option>
                             <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>

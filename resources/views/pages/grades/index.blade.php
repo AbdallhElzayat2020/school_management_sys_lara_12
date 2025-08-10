@@ -21,6 +21,8 @@
     </div>
     <!-- breadcrumb -->
 @endsection
+
+
 @section('content')
     <!-- row -->
     <div class="row">
