@@ -5,7 +5,7 @@ namespace App\Http\Requests\Grades;
 use CodeZero\UniqueTranslation\UniqueTranslationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateGradeReuest extends FormRequest
+class StoreGradeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

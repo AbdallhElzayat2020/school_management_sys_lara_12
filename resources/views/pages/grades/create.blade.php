@@ -1,9 +1,9 @@
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="createGradeModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
+                <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="createModalLabel">
                     {{ trans('grades.add_grade') }}
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -18,17 +18,18 @@
                         <div class="col">
                             <label for="grade_name_ar" class="mr-sm-2">{{ trans('grades.grade_name_ar') }}:</label>
                             <input id="grade_name_ar" value="{{ old('name.ar') }}" type="text" name="name[ar]"
-                                   class="form-control">
+                                class="form-control">
                         </div>
                         <div class="col">
-                            <label for="name_en" class="mr-sm-2">{{ trans('grades.grade_name_en') }}:</label>
-                            <input type="text" value="{{ old('name.en') }}" class="form-control" name="name[en]" >
+                            <label for="grade_name_en" class="mr-sm-2">{{ trans('grades.grade_name_en') }}:</label>
+                            <input type="text" value="{{ old('name.en') }}" class="form-control" name="name[en]"
+                                id="grade_name_en">
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="status" class="mr-sm-2">{{ trans('grades.grade_status') }}:</label>
-                        <select class="form-control" name="status" id="status" >
+                        <select class="form-control" name="status" id="status">
                             <option value="active" {{ old('status') == 'active' ? 'selected' : '' }}>
                                 {{ trans('grades.active') }}</option>
                             <option value="inactive" {{ old('status') == 'inactive' ? 'selected' : '' }}>
@@ -49,13 +50,11 @@
                     <br><br>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"
-                                data-dismiss="modal">{{ trans('tables.cancel') }}</button>
+                            data-dismiss="modal">{{ trans('tables.cancel') }}</button>
                         <button type="submit" class="btn btn-success">{{ trans('tables.save') }}</button>
                     </div>
                 </form>
             </div>
-
-
         </div>
     </div>
 </div>
