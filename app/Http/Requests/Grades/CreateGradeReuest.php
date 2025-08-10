@@ -53,4 +53,15 @@ class CreateGradeReuest extends FormRequest
             'name.en.unique' => __('grades.grade_name_en_unique'),
         ];
     }
+
+    public function attributes()
+    {
+        return [
+            'name.ar' => 'اسم المرحلة الدراسية بالعربية',
+            'name.en' => 'اسم المرحلة الدراسية بالإنجليزية',
+            'status' => 'حالة المرحلة الدراسية',
+            'notes.ar' => 'ملاحظات المرحلة الدراسية بالعربية',
+            'notes.en' => 'ملاحظات المرحلة الدراسية بالإنجليزية',
+        ];
+    }
 }
