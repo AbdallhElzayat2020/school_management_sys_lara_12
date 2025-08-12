@@ -1,12 +1,15 @@
 <?php
 return [
-    'page_title' => 'الفصول الدراسية',
-    'classrooms' => 'قائمة الفصول الدراسية',
-    'class_name_ar' => 'اسم الفصل باللغة العربية',
-    'class_name' => 'اسم الفصل الدراسي',
-    'class_name_en' => 'اسم الفصل باللغة الإنجليزية',
+    'page_title' => 'الصفوف الدراسية',
+    'classrooms' => 'قائمة الصفوف الدراسية',
+    'classes_list' => 'قائمة الصفوف',
+    'class_name_ar' => 'اسم الصف  بالعربية',
+    'class_name' => 'اسم الصف الدراسي',
+    'class_name_en' => 'اسم الصف بالإنجليزية',
     'grade_name' => 'المرحلة الدراسية',
     'status' => 'الحالة',
     'active' => 'نشط',
     'inactive' => 'غير نشط',
+    'created_successfully' => 'تم إنشاء الصفوف بنجاح',
+    'error_creating' => 'خطأ في إنشاء الصفوف',
 ];

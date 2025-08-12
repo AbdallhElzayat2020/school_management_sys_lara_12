@@ -47,12 +47,14 @@
                         </div>
                     @endif
 
-                    <button type="button" class="button x-small" data-toggle="modal" data-target="#createGradeModal">
+                    <button type="button" class="button x-small" data-toggle="modal" data-target="#createClassroomModal">
                         {{ trans('tables.add') }}
                     </button>
                     <br><br>
 
+                    {{--   Create Model--}}
                     @include('pages.classrooms.create')
+                    {{--   Create Model--}}
 
                     <div class="table-responsive">
                         <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50"
@@ -105,13 +107,14 @@
                                                 </span>
                                             @endif
                                         </button>
+
                                     </td>
                                 </tr>
 
                                 <!-- Models Popups  -->
-                                {{--                                @include('pages.grades.edit')--}}
-                                {{--                                @include('pages.grades.delete')--}}
-                                {{--                                @include('pages.grades.change_status')--}}
+                                {{--                                                                @include('pages.grades.edit')--}}
+                                {{--                                                                @include('pages.grades.delete')--}}
+                                {{--                                                                @include('pages.grades.change_status')--}}
                                 <!-- Models Popups  -->
 
                             @empty

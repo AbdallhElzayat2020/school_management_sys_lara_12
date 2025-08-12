@@ -18,27 +18,28 @@
                     <!-- menu item Grades-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#grades">
-                            <div class="pull-left"><i class="ti-palette"></i><span
-                                    class="right-nav-text">{{__('grades.grades')}}</span></div>
+                            <div class="pull-left"><i class="ti-palette"></i>
+                                <span class="right-nav-text">{{__('grades.grades')}}</span>
+                            </div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="grades" class="collapse" data-parent="#sidebarnav">
                             <li><a href="{{ route('grades.index') }}">{{__('grades.grades_menu')}}</a></li>
-                            <li><a href="{{ route('grades.create') }}">{{__('grades.add_grade')}}</a></li>
                         </ul>
                     </li>
                     <!-- menu item classrooms-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#calendar-menu">
-                            <div class="pull-left"><i class="ti-calendar"></i><span
-                                    class="right-nav-text">{{__('classrooms.page_title')}}</span></div>
+                            <div class="pull-left">
+                                <i class="ti-calendar"></i>
+                                <span class="right-nav-text">{{__('classrooms.page_title')}}</span>
+                            </div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="calendar-menu" class="collapse" data-parent="#sidebarnav">
                             <li><a href="{{ route('classrooms.index') }}">{{__('classrooms.classrooms')}} </a></li>
-                            <li><a href="{{ route('classrooms.create') }}">{{__('tables.add')}}</a></li>
                         </ul>
                     </li>
 
