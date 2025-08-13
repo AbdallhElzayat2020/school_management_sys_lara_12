@@ -83,14 +83,17 @@
                                         @endif
                                     </td>
                                     <td>{{ $classroom->grade->name }}</td>
+                                    {{--  actions --}}
                                     <td class="d-flex justify-content-center align-items-center">
+
                                         <button type="button" class="btn btn-info mx-1" data-toggle="modal"
                                                 data-target="#edit{{ $classroom->id }}"
                                                 title="{{ trans('tables.edit') }}">
                                             <i class="fa fa-edit"></i>
                                         </button>
+
                                         <button type="button" class="btn btn-danger mx-1" data-toggle="modal"
-                                                data-target="#delete_grade{{ $classroom->id }}"
+                                                data-target="#delete{{ $classroom->id }}"
                                                 title="{{ trans('tables.delete') }}">
                                             <i class="fa fa-trash"></i>
                                         </button>
@@ -112,9 +115,9 @@
                                 </tr>
 
                                 <!-- Models Popups  -->
-                                {{--                                                                @include('pages.grades.edit')--}}
-                                {{--                                                                @include('pages.grades.delete')--}}
-                                {{--                                                                @include('pages.grades.change_status')--}}
+                                @include('pages.classrooms.edit')
+                                @include('pages.classrooms.delete')
+                                @include('pages.classrooms.change_status')
                                 <!-- Models Popups  -->
 
                             @empty

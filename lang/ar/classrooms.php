@@ -10,6 +10,7 @@ return [
     'status' => 'الحالة',
     'active' => 'نشط',
     'inactive' => 'غير نشط',
+    'edit_classroom' => 'تعديل الصف الدراسي',
     'created_successfully' => 'تم إنشاء الصفوف بنجاح',
     'error_creating' => 'خطأ في إنشاء الصفوف',
 ];

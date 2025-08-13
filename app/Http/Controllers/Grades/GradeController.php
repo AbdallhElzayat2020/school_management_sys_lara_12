@@ -80,6 +80,12 @@ class GradeController extends Controller
     public function destroy(string $id)
     {
         $grade = Grade::findOrFail($id);
+
+        if ($grade->classrooms->count() > 0) {
+            toastr()->error(__('tables.grade_has_classes'));
+            return redirect()->back();
+        }
+
         try {
             $grade->delete();
         } catch (\Exception $exception) {

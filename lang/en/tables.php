@@ -18,4 +18,6 @@ return [
     'already_exists' => 'This item already exists',
 
     'add' => 'Add New',
+
+    'grade_has_classes' => 'You should delete classrooms from grade after delete grade',
 ];
