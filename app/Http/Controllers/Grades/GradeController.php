@@ -86,12 +86,13 @@ class GradeController extends Controller
                 toastr()->error(__('tables.grade_has_classes'));
                 return redirect()->back();
             }
+
             $grade->delete();
+            toastr()->success(__('tables.delete_msg'));
+            return redirect()->route('grades.index');
         } catch (\Exception $exception) {
             return redirect()->back()->with('error', __('tables.error_msg' . ' ' . $exception->getMessage()));
         }
-        toastr()->success(__('tables.delete_msg'));
-        return redirect()->route('grades.index');
     }
 
     public function changeStatus($id): \Illuminate\Http\RedirectResponse

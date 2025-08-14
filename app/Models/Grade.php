@@ -26,4 +26,10 @@ class Grade extends Model
     {
         return $this->hasMany(Classroom::class, 'grade_id');
     }
+
+    public function sections(): HasMany
+    {
+        return $this->hasMany(Section::class, 'grade_id');
+    }
+    /* ================  End Relation ships ================ */
 }

@@ -3,6 +3,7 @@
 use App\Http\Controllers\Classrooms\ClassroomController;
 use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Section\SectionController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -36,7 +37,13 @@ Route::group(
         /*  ============ Classrooms Routes ============  */
         Route::resource('classrooms', ClassroomController::class);
         Route::post('classrooms/change-status/{id}', [ClassroomController::class, 'changeStatus'])->name('classroom.change-status');
-        Route::post('delete_all', [ClassroomController::class, 'deleteAll'])->name('delete-all');
+
+        /*  ============ Sections Routes ============  */
+        Route::resource('sections', SectionController::class);
+        Route::get('get-classes/{id}', [SectionController::class, 'getClasses'])->name('sections.get-classes');
+        Route::post('sections/change-status/{id}', [SectionController::class, 'changeStatus'])->name('sections.change-status');
+
+
     }
 );
 

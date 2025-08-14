@@ -42,6 +42,23 @@
                             <li><a href="{{ route('classrooms.index') }}">{{__('classrooms.classrooms')}} </a></li>
                         </ul>
                     </li>
+                    <!-- menu item classrooms-->
+
+                    <!-- menu item Sections-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections">
+                            <div class="pull-left">
+                                <i class="ti-calendar"></i>
+                                <span class="right-nav-text">{{__('sections.title_page')}}</span>
+                            </div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="sections" class="collapse" data-parent="#sidebarnav">
+                            <li><a href="{{ route('sections.index') }}">{{__('sections.list_section')}} </a></li>
+                        </ul>
+                    </li>
+                    <!-- menu item Sections-->
 
                     <!-- menu item Charts-->
                     <li>

@@ -4,19 +4,21 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Translatable\HasTranslations;
 
-class Classroom extends Model
+class Section extends Model
 {
+
     use HasTranslations;
 
-    public $translatable = ['class_name'];
-    protected $table = 'classrooms';
+    public $translatable = ['section_name'];
+
+    protected $table = 'sections';
     protected $fillable = [
-        'class_name',
+        'section_name',
         'status',
         'grade_id',
+        'classroom_id',
     ];
 
 
@@ -26,8 +28,9 @@ class Classroom extends Model
         return $this->belongsTo(Grade::class, 'grade_id');
     }
 
-    public function sections(): HasMany
+    public function classroom(): BelongsTo
     {
-        return $this->hasMany(Section::class, 'classroom_id');
+        return $this->belongsTo(Classroom::class, 'classroom_id');
     }
+
 }

@@ -50,19 +50,14 @@
                     <button type="button" class="button x-small" data-toggle="modal" data-target="#createClassroomModal">
                         {{ trans('tables.add') }}
                     </button>
-
-                    <button type="button" class="button x-small" id="btn_delete_all">
-                        {{ trans('classrooms.delete_check_box') }}
-                    </button>
                     <br><br>
 
-                    {{--   Create Model--}}
+                    {{-- Create Model --}}
                     @include('pages.classrooms.create')
-                    {{--   Create Model--}}
+                    {{-- Create Model --}}
 
                     <div class="table-responsive">
-                        <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50"
-                               style="text-align: center">
+                        <table id="datatable" class="table  table-hover table-sm table-bordered p-0" data-page-length="50" style="text-align: center">
                             <thead>
                             <tr>
                                 <th><input name="select_all" id="example-select-all" type="checkbox" onclick="CheckAll('box1', this)"/></th>
@@ -123,7 +118,6 @@
                                 <!-- Models Popups  -->
                                 @include('pages.classrooms.edit')
                                 @include('pages.classrooms.delete')
-                                @include('pages.classrooms.delete_all')
                                 @include('pages.classrooms.change_status')
                                 <!-- Models Popups  -->
 
@@ -140,23 +134,7 @@
 
     </div>
     <!-- row closed -->
-
+    {{--66779944--}}
 @endsection
 @section('js')
-    <script type="text/javascript">
-        $(function () {
-            $("#btn_delete_all").click(function () {
-                var selected = new Array();
-                $("#datatable input[type=checkbox]:checked").each(function () {
-                    selected.push(this.value);
-                });
-
-                if (selected.length > 0) {
-                    $('#delete_all').modal('show')
-                    $('input[id="delete_all_id"]').val(selected);
-                }
-            });
-        });
-
-    </script>
 @endsection
