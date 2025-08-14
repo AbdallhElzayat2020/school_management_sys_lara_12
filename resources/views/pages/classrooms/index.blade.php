@@ -50,6 +50,10 @@
                     <button type="button" class="button x-small" data-toggle="modal" data-target="#createClassroomModal">
                         {{ trans('tables.add') }}
                     </button>
+
+                    <button type="button" class="button x-small" id="btn_delete_all">
+                        {{ trans('classrooms.delete_check_box') }}
+                    </button>
                     <br><br>
 
                     {{--   Create Model--}}
@@ -61,6 +65,7 @@
                                style="text-align: center">
                             <thead>
                             <tr>
+                                <th><input name="select_all" id="example-select-all" type="checkbox" onclick="CheckAll('box1', this)"/></th>
                                 <th>#</th>
                                 <th>{{ trans('classrooms.class_name') }}</th>
                                 <th>{{ trans('classrooms.status') }}</th>
@@ -72,7 +77,7 @@
 
                             @forelse($classrooms as $index=> $classroom)
                                 <tr>
-
+                                    <td><input type="checkbox" value="{{ $classroom->id }}" class="box1"></td>
                                     <td>{{ $index + 1 }}</td>
                                     <td>{{ $classroom->getTranslation('class_name', app()->getLocale()) }}</td>
                                     <td>
@@ -83,6 +88,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $classroom->grade->name }}</td>
+
                                     {{--  actions --}}
                                     <td class="d-flex justify-content-center align-items-center">
 
@@ -117,6 +123,7 @@
                                 <!-- Models Popups  -->
                                 @include('pages.classrooms.edit')
                                 @include('pages.classrooms.delete')
+                                @include('pages.classrooms.delete_all')
                                 @include('pages.classrooms.change_status')
                                 <!-- Models Popups  -->
 
@@ -136,5 +143,20 @@
 
 @endsection
 @section('js')
+    <script type="text/javascript">
+        $(function () {
+            $("#btn_delete_all").click(function () {
+                var selected = new Array();
+                $("#datatable input[type=checkbox]:checked").each(function () {
+                    selected.push(this.value);
+                });
 
+                if (selected.length > 0) {
+                    $('#delete_all').modal('show')
+                    $('input[id="delete_all_id"]').val(selected);
+                }
+            });
+        });
+
+    </script>
 @endsection

@@ -16,7 +16,6 @@ return [
     'change_status' => 'Change Status',
     'change_status_warning' => 'Are you sure you want to change the status',
     'already_exists' => 'This item already exists',
-
     'add' => 'Add New',
 
     'grade_has_classes' => 'You should delete classrooms from grade after delete grade',

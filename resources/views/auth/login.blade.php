@@ -30,7 +30,7 @@
 preloader -->
 
     <div id="pre-loader">
-        <img src="images/pre-loader/loader-01.svg" alt="">
+        <img src="{{asset('images/pre-loader/loader-01.svg')}}" alt="">
     </div>
 
     <!--=================================
@@ -40,11 +40,11 @@ preloader -->
 login-->
 
     <section class="height-100vh d-flex align-items-center page-section-ptb login"
-             style="background-image: url(assets/images/login-bg.jpg);">
+             style="background-image: url({{asset('assets/images/login-bg.jpg')}});">
         <div class="container">
             <div class="row justify-content-center no-gutters vertical-align">
                 <div class="col-lg-4 col-md-6 login-fancy-bg bg"
-                     style="background-image: url(images/login-inner-bg.jpg);">
+                     style="background-image: url({{asset('images/login-inner-bg.jpg')}});">
                     <div class="login-fancy">
                         <h2 class="text-white mb-20">Hello world!</h2>
                         <p class="mb-20 text-white">Create tailor-cut websites with the exclusive multi-purpose
@@ -68,9 +68,9 @@ login-->
                                        class="form-control @error('email') is-invalid @enderror" name="email"
                                        value="{{ old('email') }}" required autocomplete="email" autofocus>
                                 @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                <span
+                                    class="invalid-feedback" role="alert"><strong>{{ $message }}</strong>
+                                </span>
                                 @enderror
 
                             </div>
@@ -82,15 +82,13 @@ login-->
                                        required autocomplete="current-password">
 
                                 @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+                                <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
                                 @enderror
 
                             </div>
                             <div class="section-field">
                                 <div class="remember-checkbox mb-30">
-                                    <input type="checkbox" class="form-control" name="two" id="two"/>
+                                    <input type="checkbox" class="form-control" name="remember-me" id="two"/>
                                     <label for="two"> تذكرني</label>
                                     <a href="#" class="float-right">هل نسيت كلمةالمرور ؟</a>
                                 </div>

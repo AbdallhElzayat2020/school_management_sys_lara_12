@@ -36,6 +36,7 @@ Route::group(
         /*  ============ Classrooms Routes ============  */
         Route::resource('classrooms', ClassroomController::class);
         Route::post('classrooms/change-status/{id}', [ClassroomController::class, 'changeStatus'])->name('classroom.change-status');
+        Route::post('delete_all', [ClassroomController::class, 'deleteAll'])->name('delete-all');
     }
 );
 

@@ -99,4 +99,9 @@ class ClassroomController extends Controller
             return redirect()->back();
         }
     }
+
+    public function deleteAll(Request $request)
+    {
+
+    }
 }

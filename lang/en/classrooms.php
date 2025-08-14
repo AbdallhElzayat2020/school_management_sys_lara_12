@@ -12,4 +12,5 @@ return [
     'edit_classroom' => 'Edit Classroom',
     'created_successfully' => 'Classrooms created successfully',
     'error_creating' => 'Error creating classrooms',
+    'delete_check_box' => 'Delete Selected Rows',
 ];

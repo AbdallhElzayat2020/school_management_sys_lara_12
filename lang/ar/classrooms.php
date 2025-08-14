@@ -13,4 +13,5 @@ return [
     'edit_classroom' => 'تعديل الصف الدراسي',
     'created_successfully' => 'تم إنشاء الصفوف بنجاح',
     'error_creating' => 'خطأ في إنشاء الصفوف',
+    'delete_check_box' => 'حذف الصفوف المختارة',
 ];
