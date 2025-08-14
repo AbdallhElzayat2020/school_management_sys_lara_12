@@ -74,7 +74,7 @@ class SectionController extends Controller
     }
 
     public
-    function destroy(string $id)
+    function destroy(string $id): ?\Illuminate\Http\RedirectResponse
     {
         try {
             $section = Section::findOrFail($id);
