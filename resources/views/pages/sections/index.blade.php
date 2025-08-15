@@ -78,13 +78,27 @@
                                                                         </td>
                                                                         <td>
 
-                                                                            <a href="#" class="btn btn-outline-info btn-sm"
-                                                                               data-toggle="modal"
-                                                                               data-target="#edit{{ $list_section->id }}">{{ trans('tables.edit') }}</a>
-                                                                            <a href="#"
-                                                                               class="btn btn-outline-danger btn-sm"
-                                                                               data-toggle="modal"
-                                                                               data-target="#delete{{ $list_section->id }}">{{ trans('tables.delete') }}</a>
+                                                                            <a href="#" class="btn btn-outline-info btn-sm" data-toggle="modal"
+                                                                               data-target="#edit{{ $list_section->id }}">
+                                                                                {{ trans('tables.edit') }}
+                                                                            </a>
+                                                                            <a href="#" class="btn btn-outline-danger btn-sm" data-toggle="modal"
+                                                                               data-target="#delete{{ $list_section->id }}">
+                                                                                {{ trans('tables.delete') }}
+                                                                            </a>
+                                                                            <button type="button" class="btn btn-info mx-1" data-toggle="modal"
+                                                                                    data-target="#change_status_{{ $list_section->id }}">
+                                                                                @if ($list_section->status == 'active')
+                                                                                    <span class="badge badge-success p-1"
+                                                                                          style="font-size: 18px!important;">
+                                                                                        <i class="fas fa-ban"></i>
+                                                                                    </span>
+                                                                                @else
+                                                                                    <span class="badge badge-danger p-1" style="font-size: 18px!important;">
+                                                                                        <i class="fas fa-play"></i>
+                                                                                    </span>
+                                                                                @endif
+                                                                            </button>
                                                                         </td>
                                                                     </tr>
 
@@ -95,6 +109,7 @@
 
                                                                     <!-- delete_modal_Grade -->
                                                                     @include('pages.sections.delete')
+                                                                    @include('pages.sections.change_status')
 
                                                                 @endforeach
                                                                 </tbody>

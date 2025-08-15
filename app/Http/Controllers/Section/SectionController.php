@@ -88,13 +88,24 @@ class SectionController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => __('tables.error_msg') . $e->getMessage()]);
         }
-
     }
 
-    public
-    function changeStatus(Request $request)
+    public function changeStatus($id): \Illuminate\Http\RedirectResponse
     {
+        $section = Section::findOrFail($id);
 
+        if ($section->status == 'active') {
+            $section->update([
+                'status' => 'inactive',
+            ]);
+            toastr()->success(__('tables.update_msg'));
+            return redirect()->back();
+        }
+        $section->update([
+            'status' => 'active',
+        ]);
+        toastr()->success(__('tables.update_msg'));
+        return redirect()->back();
     }
 
     public
