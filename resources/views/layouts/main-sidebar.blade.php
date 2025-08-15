@@ -60,6 +60,23 @@
                     </li>
                     <!-- menu item Sections-->
 
+                    <!-- menu item parents-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#parents">
+                            <div class="pull-left">
+                                <i class="ti-calendar"></i>
+                                <span class="right-nav-text">{{__('parents.parents')}}</span>
+                            </div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="parents" class="collapse" data-parent="#sidebarnav">
+                            <li><a href="{{ route('parents.index') }}">{{__('parents.list_parents')}} </a></li>
+                            <li><a href="{{ route('parents.create') }}">{{__('parents.add_parent')}} </a></li>
+                        </ul>
+                    </li>
+                    <!-- menu item parents-->
+
                     <!-- menu item Charts-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#chart">

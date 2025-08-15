@@ -2,10 +2,10 @@
 
 use App\Http\Controllers\Classrooms\ClassroomController;
 use App\Http\Controllers\Grades\GradeController;
+use App\Http\Controllers\Parents\StudentParentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Section\SectionController;
 use Illuminate\Support\Facades\Route;
-
 
 Route::get('/', function () {
     return view('auth.login');
@@ -14,10 +14,9 @@ Route::get('/', function () {
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth:web']
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
     ],
     function () {
-
 
         Route::middleware('auth')->group(function () {
             Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -28,7 +27,6 @@ Route::group(
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard.index');
-
 
         /*  ============ Grades Routes ============  */
         Route::resource('grades', GradeController::class);
@@ -43,9 +41,16 @@ Route::group(
         Route::get('get-classes/{id}', [SectionController::class, 'getClasses'])->name('sections.get-classes');
         Route::post('sections/change-status/{id}', [SectionController::class, 'changeStatus'])->name('sections.change-status');
 
+        /*  ============ Parents Routes ============  */
 
-    }
-);
+        Route::resource('parents', StudentParentController::class);
 
+
+        /*  For laravel localization with livewire   */
+        Livewire::setUpdateRoute(function ($handle) {
+            return Route::post('/livewire/update', $handle);
+        });
+
+    });
 
 require __DIR__ . '/auth.php';

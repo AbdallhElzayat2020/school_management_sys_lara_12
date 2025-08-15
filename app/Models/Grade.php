@@ -19,7 +19,6 @@ class Grade extends Model
         'notes',
     ];
 
-
     /* ================  Relation ships ================ */
 
     public function classrooms(): HasMany
