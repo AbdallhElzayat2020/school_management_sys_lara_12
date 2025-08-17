@@ -1,10 +1,16 @@
 <div>
-    @if (session('successMessage'))
+    @if ($successMessage)
+        <div class="alert alert-success" id="success-alert">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            {{ $successMessage }}
+        </div>
+    @endif
+    {{-- @if (session('successMessage'))
         <div class="alert alert-success" id="success-alert">
             <button type="button" class="close" data-dismiss="alert">x</button>
             {{ session('successMessage') }}
         </div>
-    @endif
+    @endif --}}
 
     @if ($catchError)
         <div class="alert alert-danger" id="success-danger">
