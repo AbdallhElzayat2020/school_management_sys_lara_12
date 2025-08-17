@@ -15,7 +15,7 @@ class ReligionSeeder extends Seeder
     public function run(): void
     {
 
-        DB::table('religions')->truncate();
+//        DB::table('religions')->truncate();
         $religions = [
 
             [
@@ -33,7 +33,7 @@ class ReligionSeeder extends Seeder
         ];
 
         foreach ($religions as $religion) {
-            Religion::create([
+            Religion::updateOrCreate([
                 'name' => [
                     'en' => $religion['en'],
                     'ar' => $religion['ar']

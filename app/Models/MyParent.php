@@ -8,31 +8,43 @@ use Spatie\Translatable\HasTranslations;
 class MyParent extends Model
 {
     use HasTranslations;
+    // fields are defined in the migration and used by the Livewire component with names like "name_father"
+    public $translatable = [
+        'name_father',
+        'job_father',
+        'name_mother',
+        'job_mother',
+        'address_father',
+        'address_mother',
+    ];
 
-    public $translatable = ['father_name', 'father_job', 'mother_name', 'mother_job', 'father_address', 'mother_address'];
+    // explicitly set the table name to match the migration
+    protected $table = 'my_parents';
 
-    protected $table = '';
     protected $fillable = [
         'email',
         'password',
-        'father_name',
-        'father_national_id',
-        'father_passport_id',
-        'father_phone',
-        'father_job',
-        'father_address',
-        'father_nationality_id',
-        'father_type_blood_id',
-        'father_religion_id',
 
-        'mother_name',
-        'mother_national_id',
-        'mother_passport_id',
-        'mother_phone',
-        'mother_job',
-        'mother_address',
-        'mother_nationality_id',
-        'mother_type_blood_id',
-        'mother_religion_id',
+        // father
+        'name_father',
+        'national_id_father',
+        'passport_id_father',
+        'phone_father',
+        'job_father',
+        'address_father',
+        'nationality_father_id',
+        'blood_type_father_id',
+        'religion_father_id',
+
+        // mother
+        'name_mother',
+        'national_id_mother',
+        'passport_id_mother',
+        'phone_mother',
+        'job_mother',
+        'address_mother',
+        'nationality_mother_id',
+        'blood_type_mother_id',
+        'religion_mother_id',
     ];
 }

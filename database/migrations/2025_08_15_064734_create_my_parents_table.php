@@ -18,26 +18,26 @@ return new class extends Migration {
             $table->string('password');
 
             /*  father info */
-            $table->string('father_name', 255);
-            $table->string('father_national_id', 50)->unique();
-            $table->string('father_passport_id', 50)->unique();
-            $table->string('father_phone', 18)->unique();
-            $table->string('father_job', 150)->nullable();
-            $table->string('father_address', 255);
-            $table->foreignId('father_nationality_id')->constrained('nationalities');
-            $table->foreignId('father_type_blood_id')->constrained('type_bloods');
-            $table->foreignId('father_religion_id')->constrained('religions');
+            $table->string('name_father');
+            $table->string('national_id_father');
+            $table->string('passport_id_father');
+            $table->string('phone_father');
+            $table->string('job_father');
+            $table->foreignId('nationality_father_id')->constrained('nationalities');
+            $table->foreignId('blood_type_father_id')->constrained('type_bloods');
+            $table->foreignId('religion_father_id')->constrained('religions');
+            $table->string('address_father');
 
             /*  mother info */
-            $table->string('mother_name', 255);
-            $table->string('mother_national_id', 50)->unique();
-            $table->string('mother_passport_id', 50)->unique();
-            $table->string('mother_phone', 18)->unique();
-            $table->string('mother_job', 150)->nullable();
-            $table->string('mother_address', 255);
-            $table->foreignId('mother_nationality_id')->constrained('nationalities');
-            $table->foreignId('mother_type_blood_id')->constrained('type_bloods');
-            $table->foreignId('mother_religion_id')->constrained('religions');
+            $table->string('name_mother');
+            $table->string('national_id_mother');
+            $table->string('passport_id_mother');
+            $table->string('phone_mother');
+            $table->string('job_mother');
+            $table->foreignId('nationality_mother_id')->constrained('nationalities');
+            $table->foreignId('blood_type_mother_id')->constrained('type_bloods');
+            $table->foreignId('religion_mother_id')->constrained('religions');
+            $table->string('address_mother');
 
             $table->timestamps();
         });

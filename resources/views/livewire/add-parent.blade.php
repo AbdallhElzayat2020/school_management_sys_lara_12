@@ -6,13 +6,12 @@
         </div>
     @endif
 
-    {{--    @if ($catchError) --}}
-    {{--        <div class="alert alert-danger" id="success-danger"> --}}
-    {{--            <button type="button" class="close" data-dismiss="alert">x</button> --}}
-    {{--            {{ $catchError }} --}}
-    {{--        </div> --}}
-    {{--    @endif --}}
-
+    @if ($catchError)
+        <div class="alert alert-danger" id="success-danger">
+            <button type="button" class="close" data-dismiss="alert">x</button>
+            {{ $catchError }}
+        </div>
+    @endif
 
     <div class="stepwizard">
         <div class="stepwizard-row setup-panel">
@@ -45,9 +44,9 @@
             <div class="col-xs-12">
                 <div class="col-md-12">
                     <h3 style="font-family: 'Cairo', sans-serif;">هل انت متاكد من حفظ البيانات ؟</h3><br>
-                    <button class="btn btn-danger btn-sm nextBtn btn-lg pull-right" type="button"
+                    <button class="btn btn-danger btn-sm mx-1 nextBtn btn-lg pull-right" type="button"
                         wire:click="back(2)">{{ trans('parents.Back') }}</button>
-                    <button class="btn btn-success btn-sm btn-lg pull-right" wire:click="submitForm"
+                    <button class="btn btn-success btn-sm mx-1 btn-lg pull-right" wire:click="submitForm"
                         type="button">{{ trans('parents.Finish') }}</button>
                 </div>
             </div>

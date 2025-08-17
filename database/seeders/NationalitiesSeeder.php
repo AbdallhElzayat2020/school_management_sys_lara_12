@@ -15,7 +15,7 @@ class NationalitiesSeeder extends Seeder
     public function run(): void
     {
 
-        DB::table('nationalities')->truncate();
+//        DB::table('nationalities')->truncate();
         $nationals = [
             [
                 'en' => 'Afghan',
@@ -1249,7 +1249,7 @@ class NationalitiesSeeder extends Seeder
         ];
 
         foreach ($nationals as $national) {
-            Nationalitie::create([
+            Nationalitie::updateOrCreate([
                 'name' => [
                     'ar' => $national['ar'],
                     'en' => $national['en'],
