@@ -38,6 +38,8 @@ return [
     'Religion_Mother_id' => 'Religion',
     'Address_Mother' => 'Address Mother',
 
+    'Attachments' => 'Attachments',
+
     'Back' => 'Back',
     'Finish' => 'Confirm',
 ];

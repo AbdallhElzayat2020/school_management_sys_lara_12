@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Spatie\Translatable\HasTranslations;
 
 class MyParent extends Model
@@ -47,4 +48,12 @@ class MyParent extends Model
         'blood_type_mother_id',
         'religion_mother_id',
     ];
+
+
+    /*  relations  */
+
+    public function images(): MorphMany
+    {
+        return $this->morphMany(Image::class, 'imageable');
+    }
 }

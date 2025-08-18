@@ -4,16 +4,21 @@ namespace App\Livewire;
 
 use App\Models\MyParent;
 use App\Models\Nationalitie;
+use App\Models\ParentAttachment;
+use App\Models\Image;
 use App\Models\Religion;
 use App\Models\TypeBlood;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class AddParent extends Component
 {
-
+    use WithFileUploads;
     public $successMessage = '';
-
+    public $updateMode = false;
+    public $photos = [];
     public $catchError;
 
     public $currentStep = 1,
@@ -43,7 +48,14 @@ class AddParent extends Component
             'phone_father' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'national_id_mother' => 'required|string|min:10|max:10|regex:/[0-9]{9}/',
             'passport_id_mother' => 'min:10|max:10',
-            'phone_mother' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10'
+            'phone_mother' => 'regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
+            // ensure selects are integers when changed
+            'nationality_father_id' => 'sometimes|integer|exists:nationalities,id',
+            'blood_type_father_id' => 'sometimes|integer|exists:type_bloods,id',
+            'religion_father_id' => 'sometimes|integer|exists:religions,id',
+            'nationality_mother_id' => 'sometimes|integer|exists:nationalities,id',
+            'blood_type_mother_id' => 'sometimes|integer|exists:type_bloods,id',
+            'religion_mother_id' => 'sometimes|integer|exists:religions,id',
         ]);
     }
 
@@ -69,9 +81,9 @@ class AddParent extends Component
             'national_id_father' => 'required|unique:my_parents,national_id_father',
             'passport_id_father' => 'required|unique:my_parents,passport_id_father',
             'phone_father' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
-            'nationality_father_id' => 'required',
-            'blood_type_father_id' => 'required',
-            'religion_father_id' => 'required',
+            'nationality_father_id' => 'required|integer|exists:nationalities,id',
+            'blood_type_father_id' => 'required|integer|exists:type_bloods,id',
+            'religion_father_id' => 'required|integer|exists:religions,id',
             'address_father' => 'required',
         ]);
 
@@ -90,9 +102,9 @@ class AddParent extends Component
             'phone_mother' => 'required|regex:/^([0-9\s\-\+\(\)]*)$/|min:10',
             'job_mother' => 'required',
             'job_mother_en' => 'required',
-            'nationality_mother_id' => 'required',
-            'blood_type_mother_id' => 'required',
-            'religion_mother_id' => 'required',
+            'nationality_mother_id' => 'required|integer|exists:nationalities,id',
+            'blood_type_mother_id' => 'required|integer|exists:type_bloods,id',
+            'religion_mother_id' => 'required|integer|exists:religions,id',
             'address_mother' => 'required',
         ]);
 
@@ -102,32 +114,36 @@ class AddParent extends Component
     public function submitForm()
     {
         try {
-            $My_Parent = new MyParent();
-            // Father_INPUTS
-            $My_Parent->email = $this->email;
-            $My_Parent->password = Hash::make($this->password);
-            $My_Parent->name_father = ['en' => $this->name_father_en, 'ar' => $this->name_father];
-            $My_Parent->national_id_father = $this->national_id_father;
-            $My_Parent->passport_id_father = $this->passport_id_father;
-            $My_Parent->phone_father = $this->phone_father;
-            $My_Parent->job_father = ['en' => $this->job_father_en, 'ar' => $this->job_father];
-            $My_Parent->nationality_father_id = $this->nationality_father_id;
-            $My_Parent->blood_type_father_id = $this->blood_type_father_id;
-            $My_Parent->religion_father_id = $this->religion_father_id;
-            $My_Parent->address_father = $this->address_father;
+            $my_parent = MyParent::create([
+                'email' => $this->email,
+                'password' => Hash::make($this->password),
+                'name_father' => ['en' => $this->name_father_en, 'ar' => $this->name_father],
+                'national_id_father' => $this->national_id_father,
+                'passport_id_father' => $this->passport_id_father,
+                'phone_father' => $this->phone_father,
+                'job_father' => ['en' => $this->job_father_en, 'ar' => $this->job_father],
+                'nationality_father_id' => $this->nationality_father_id,
+                'blood_type_father_id' => $this->blood_type_father_id,
+                'religion_father_id' => $this->religion_father_id,
+                'address_father' => $this->address_father,
+                'name_mother' => ['en' => $this->name_mother_en, 'ar' => $this->name_mother],
+                'national_id_mother' => $this->national_id_mother,
+                'passport_id_mother' => $this->passport_id_mother,
+                'phone_mother' => $this->phone_mother,
+                'job_mother' => ['en' => $this->job_mother_en, 'ar' => $this->job_mother],
+                'nationality_mother_id' => $this->nationality_mother_id,
+                'blood_type_mother_id' => $this->blood_type_mother_id,
+                'religion_mother_id' => $this->religion_mother_id,
+                'address_mother' => $this->address_mother,
+            ]);
 
-            // Mother_INPUTS
-            $My_Parent->name_mother = ['en' => $this->name_mother_en, 'ar' => $this->name_mother];
-            $My_Parent->national_id_mother = $this->national_id_mother;
-            $My_Parent->passport_id_mother = $this->passport_id_mother;
-            $My_Parent->phone_mother = $this->phone_mother;
-            $My_Parent->job_mother = ['en' => $this->job_mother_en, 'ar' => $this->job_mother];
-            $My_Parent->nationality_mother_id = $this->nationality_mother_id;
-            $My_Parent->blood_type_mother_id = $this->blood_type_mother_id;
-            $My_Parent->religion_mother_id = $this->religion_mother_id;
-            $My_Parent->address_mother = $this->address_mother;
 
-            $My_Parent->save();
+            foreach ($this->photos as $photo) {
+                $photo->storeAs($this->national_id_father, $photo->getClientOriginalName(), 'parentAttachments');
+
+                $my_parent->images()->create(['url' => $photo->getClientOriginalName()]);
+            }
+
             $this->successMessage = trans('tables.success_msg');
             $this->clearForm();
             $this->currentStep = 1;

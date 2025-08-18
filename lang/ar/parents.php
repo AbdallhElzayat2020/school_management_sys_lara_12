@@ -35,6 +35,7 @@ return [
     'Religion_Mother_id' => 'الديانة',
     'Address_Mother' => 'عنوان الام',
 
+    'Attachments' => 'المرفقات',
     'Next' => 'التالي',
     'Back' => 'السابق',
     'Finish' => 'تاكيد',
