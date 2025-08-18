@@ -179,14 +179,16 @@
                     <div class="col-lg-12 mt-3">
                         <h5>{{ __('parents.Attachments') }}</h5>
                         <div class="row">
-                            @foreach ($parent->images as $image)
+                            @forelse ($parent->images as $image)
                                 <div class="col-md-2 mb-2 text-center">
                                     <a href="{{ asset('parentAttachments/' . $image->url) }}" target="_blank">
                                         <img src="{{ asset('parentAttachments/' . $image->url) }}" alt="image"
                                             class="img-fluid img-thumbnail" style="max-height:120px;">
                                     </a>
                                 </div>
-                            @endforeach
+                            @empty
+                                <p>{{ __('tables.no_found') }}</p>
+                            @endforelse
                         </div>
                     </div>
                 </div>

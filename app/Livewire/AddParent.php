@@ -20,6 +20,8 @@ class AddParent extends Component
     public $show_table = true;
     public $catchError;
 
+    public $parent_id;
+
     public $currentStep = 1,
 
         // Father_INPUTS
@@ -136,7 +138,6 @@ class AddParent extends Component
                 'address_mother' => $this->address_mother,
             ]);
 
-
             foreach ($this->photos as $photo) {
                 $filename = $photo->getClientOriginalName();
                 $path = $photo->storeAs($this->national_id_father, $filename, 'parentAttachments');
@@ -153,6 +154,42 @@ class AddParent extends Component
         }
     }
 
+
+
+
+    //
+    public function edit($id)
+    {
+        $this->show_table = false;
+        $this->updateMode = true;
+        $My_Parent = MyParent::where('id', $id)->first();
+        $this->parent_id = $id;
+        $this->email = $My_Parent->email;
+        $this->password = $My_Parent->password;
+        $this->name_father = $My_Parent->getTranslation('name_father', 'ar');
+        $this->name_father_en = $My_Parent->getTranslation('name_father', 'en');
+        $this->job_father = $My_Parent->getTranslation('job_father', 'ar');
+        $this->job_father_en = $My_Parent->getTranslation('job_father', 'en');
+        $this->national_id_father = $My_Parent->national_id_father;
+        $this->passport_id_father = $My_Parent->passport_id_father;
+        $this->phone_father = $My_Parent->phone_father;
+        $this->nationality_father_id = $My_Parent->nationality_father_id;
+        $this->blood_type_father_id = $My_Parent->blood_type_father_id;
+        $this->address_father = $My_Parent->address_father;
+        $this->religion_father_id = $My_Parent->religion_father_id;
+
+        $this->name_mother = $My_Parent->getTranslation('name_mother', 'ar');
+        $this->name_mother_en = $My_Parent->getTranslation('name_mother', 'en');
+        $this->job_mother = $My_Parent->getTranslation('job_mother', 'ar');
+        $this->job_mother_en = $My_Parent->getTranslation('job_mother', 'en');
+        $this->national_id_mother = $My_Parent->national_id_mother;
+        $this->passport_id_mother = $My_Parent->passport_id_mother;
+        $this->phone_mother = $My_Parent->phone_mother;
+        $this->nationality_mother_id = $My_Parent->nationality_mother_id;
+        $this->blood_type_mother_id = $My_Parent->blood_type_mother_id;
+        $this->address_mother = $My_Parent->address_mother;
+        $this->religion_mother_id = $My_Parent->religion_mother_id;
+    }
 
     //clearForm
     public function clearForm()

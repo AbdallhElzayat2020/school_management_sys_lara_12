@@ -59,14 +59,12 @@
                                         <td>{{ $my_parent->phone_father }}</td>
                                         <td>{{ $my_parent->job_father }}</td>
                                         <td>
-                                            <button wire:click="edit({{ $my_parent->id }})"
-                                                title="{{ trans('tables.edit') }}" class="btn btn-primary btn-sm"><i
+                                            <a href="{{ route('parents.edit',$my_parent->id) }}" title="{{ trans('tables.edit') }}" class="btn btn-primary btn-sm"><i
                                                     class="fa fa-edit"></i>
-                                            </button>
-                                            <button type="button" class="btn btn-danger btn-sm"
-                                                wire:click="delete({{ $my_parent->id }})"
+                                            </a>
+                                            <a  class="btn btn-danger btn-sm"
                                                 title="{{ trans('tables.delete') }}"><i class="fa fa-trash"></i>
-                                            </button>
+                                            </a>
                                             <a href="{{ route('parents.show', $my_parent->id) }}"
                                                 class="btn btn-info btn-sm" title="{{ trans('tables.show') }}"><i
                                                     class="fa fa-eye"></i>
