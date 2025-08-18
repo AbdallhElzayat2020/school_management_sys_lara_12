@@ -18,8 +18,26 @@ class SpecializationSeeder extends Seeder
             ['en' => 'Sciences', 'ar' => 'علوم'],
             ['en' => 'Computer', 'ar' => 'حاسب الي'],
             ['en' => 'English', 'ar' => 'انجليزي'],
+            ['en' => 'Mathematics', 'ar' => 'رياضيات'],
+            ['en' => 'Physics', 'ar' => 'فيزياء'],
+            ['en' => 'Chemistry', 'ar' => 'كيمياء'],
+            ['en' => 'Biology', 'ar' => 'أحياء'],
+            ['en' => 'History', 'ar' => 'تاريخ'],
+            ['en' => 'Geography', 'ar' => 'جغرافيا'],
+            ['en' => 'Philosophy', 'ar' => 'فلسفة'],
+            ['en' => 'Physical Education', 'ar' => 'التربية البدنية'],
+            ['en' => 'Music', 'ar' => 'موسيقى'],
+            ['en' => 'Art', 'ar' => 'فن'],
+            ['en' => 'Drama', 'ar' => 'دراما'],
+            ['en' => 'Economics', 'ar' => 'اقتصاد'],
+            ['en' => 'Business Studies', 'ar' => 'دراسات الأعمال'],
+            ['en' => 'Psychology', 'ar' => 'علم النفس'],
+            ['en' => 'Sociology', 'ar' => 'علم الاجتماع'],
+            ['en' => 'Political Science', 'ar' => 'علوم سياسية'],
+            ['en' => 'Law', 'ar' => 'قانون'],
+            ['en' => 'Engineering', 'ar' => 'هندسة'],
+            ['en' => 'Information Technology', 'ar' => 'تكنولوجيا المعلومات'],
         ];
-
 
         foreach ($specializations as $specialization) {
             Specialization::updateOrCreate([
