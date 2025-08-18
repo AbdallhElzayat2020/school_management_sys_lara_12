@@ -4,7 +4,6 @@
             <div class="col-lg-12">
                 <div class="col-lg-12">
                     <br>
-
                     <div class="form-row">
                         <div class="col">
                             <label for="title">{{ trans('parents.Name_Mother') }}</label>

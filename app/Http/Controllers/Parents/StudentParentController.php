@@ -12,11 +12,21 @@ class StudentParentController extends Controller
 {
     public function index()
     {
-        return 'parents home';
+        $my_parents = MyParent::all();
+        return view('pages.parents.index', compact('my_parents'));
     }
 
     public function create()
     {
         return view('pages.parents.add-parent');
+    }
+
+    public function showParent($id)
+    {
+        $Nationalities = Nationalitie::all();
+        $Type_Bloods = TypeBlood::all();
+        $Religions = Religion::all();
+        $parent = MyParent::findOrFail($id);
+        return view('pages.parents.show-parent', compact('parent', 'Nationalities', 'Type_Bloods', 'Religions'));
     }
 }

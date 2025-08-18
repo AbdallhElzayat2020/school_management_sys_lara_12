@@ -4,21 +4,20 @@ namespace App\Livewire;
 
 use App\Models\MyParent;
 use App\Models\Nationalitie;
-use App\Models\ParentAttachment;
-use App\Models\Image;
 use App\Models\Religion;
 use App\Models\TypeBlood;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
 class AddParent extends Component
 {
     use WithFileUploads;
+
     public $successMessage = '';
     public $updateMode = false;
     public $photos = [];
+    public $show_table = true;
     public $catchError;
 
     public $currentStep = 1,
@@ -139,9 +138,11 @@ class AddParent extends Component
 
 
             foreach ($this->photos as $photo) {
-                $photo->storeAs($this->national_id_father, $photo->getClientOriginalName(), 'parentAttachments');
+                $filename = $photo->getClientOriginalName();
+                $path = $photo->storeAs($this->national_id_father, $filename, 'parentAttachments');
+                // $photo->storeAs($this->national_id_father, $filename, 'parentAttachments');
 
-                $my_parent->images()->create(['url' => $photo->getClientOriginalName()]);
+                $my_parent->images()->create(['url' => $path]);
             }
 
             $this->successMessage = trans('tables.success_msg');

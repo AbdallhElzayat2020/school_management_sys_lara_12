@@ -6,6 +6,7 @@ use App\Http\Controllers\Parents\StudentParentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Section\SectionController;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -44,13 +45,20 @@ Route::group(
         /*  ============ Parents Routes ============  */
 
         Route::resource('parents', StudentParentController::class);
+        Route::get('show-parent/{id}', [StudentParentController::class, 'showParent'])->name('parents.show');
+
+
+
+
+
+
 
 
         /*  For laravel localization with livewire   */
         Livewire::setUpdateRoute(function ($handle) {
             return Route::post('/livewire/update', $handle);
         });
-
-    });
+    }
+);
 
 require __DIR__ . '/auth.php';

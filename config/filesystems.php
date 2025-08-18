@@ -49,7 +49,7 @@ return [
 
         'parentAttachments' => [
             'driver' => 'local',
-            'root' => storage_path('app/parentAttachments'),
+            'root' => public_path('/parentAttachments'),
             'url' => env('APP_URL') . '/storage',
             'visibility' => 'public',
             'throw' => false,
