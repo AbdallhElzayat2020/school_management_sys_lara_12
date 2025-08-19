@@ -37,6 +37,7 @@ class SpecializationSeeder extends Seeder
             ['en' => 'Law', 'ar' => 'قانون'],
             ['en' => 'Engineering', 'ar' => 'هندسة'],
             ['en' => 'Information Technology', 'ar' => 'تكنولوجيا المعلومات'],
+            ['en' => 'Nursing', 'ar' => 'تمريض'],
         ];
 
         foreach ($specializations as $specialization) {

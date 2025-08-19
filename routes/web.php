@@ -5,6 +5,7 @@ use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\Parents\StudentParentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Section\SectionController;
+use App\Http\Controllers\Teacher\TeacherController;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
 
@@ -47,12 +48,9 @@ Route::group(
         Route::resource('parents', StudentParentController::class);
         Route::get('show-parent/{id}', [StudentParentController::class, 'showParent'])->name('parents.show');
 
-
-
-
-
-
-
+        /*  ============ Parents Routes ============  */
+        Route::resource('teachers', TeacherController::class);
+        Route::post('teachers/change-status/{id}', [TeacherController::class, 'changeStatus'])->name('teacher.change-status');
 
         /*  For laravel localization with livewire   */
         Livewire::setUpdateRoute(function ($handle) {

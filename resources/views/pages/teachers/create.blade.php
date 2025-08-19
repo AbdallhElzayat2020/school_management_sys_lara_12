@@ -1,97 +1,120 @@
-<div class="modal fade" id="createClassroomModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
+@extends('layouts.master')
+@section('title', __('teachers.teachers'))
+@section('content')
+    <div class="row">
+        <div class="col-md-12 mb-30">
+            <div class="card card-statistics h-100">
+                <div class="card-body">
 
-            <!-- Modal Header -->
-            <div class="modal-header">
-                <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="createModalLabel">
-                    {{ trans('classrooms.classrooms') }}
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+                    @if (session()->has('error'))
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <strong>{{ session()->get('error') }}</strong>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 
-            <!-- Modal Body -->
-            <div class="modal-body">
-                <form class="row" action="{{ route('classrooms.store') }}" method="POST">
-                    @csrf
-                    <div class="repeater w-100">
-                        <div data-repeater-list="List_Classes">
-                            <div data-repeater-item>
-                                <div class="container">
-                                    <div class="row d-flex align-items-center justify-content-between">
 
-                                        <!-- Class Name AR -->
-                                        <div class="col-md-3">
-                                            <label for="class_name_ar" style="font-family: Cairo, sans-serif"
-                                                   class="form-label fw-bold">{{ trans('classrooms.class_name_ar') }}:</label>
-                                            <input class="form-control form-control-lg" id="class_name_ar"
-                                                   type="text" value="{{ old('class_name.ar') }}"
-                                                   name="class_name[ar]"/>
-                                        </div>
-
-                                        <!-- Class Name EN -->
-                                        <div class="col-md-3">
-                                            <label for="class_name_en" style="font-family: Cairo, sans-serif"
-                                                   class="form-label fw-bold">{{ trans('classrooms.class_name_en') }}:</label>
-                                            <input class="form-control form-control-lg" type="text"
-                                                   value="{{ old('class_name.en') }}" name="class_name[en]"/>
-                                        </div>
-
-                                        <!-- Grade Select -->
-                                        <div class="col-md-4">
-                                            <label for="grade_id" style="font-family: Cairo, sans-serif"
-                                                   class="form-label font-weight-bold">{{ trans('grades.grade_name') }}:</label>
-                                            <select class="form-control form-control-lg" name="grade_id" id="grade_id"
-                                                    style="min-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                                <option value="">{{ trans('grades.grade_name') }}</option>
-                                                @foreach ($grades as $grade)
-                                                    <option value="{{ $grade->id }}"
-                                                            {{ old('grade_id') == $grade->id ? 'selected' : '' }}
-                                                            title="{{ $grade->getTranslation('name', app()->getLocale()) }}">
-                                                        {{ $grade->getTranslation('name', app()->getLocale()) }}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                        <!-- Delete Button -->
-                                        <div class="col-md-1 d-flex justify-content-center">
-                                            <button class="btn btn-danger btn-sm" data-repeater-delete type="button">
-                                                {{ trans('tables.delete') }}
-                                            </button>
-                                        </div>
-
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    @endif
+                    <div class="col-xs-12">
+                        <div class="col-md-12">
+                            <br>
+                            <form action="{{ route('teachers.store') }}" method="post">
+                                @csrf
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="title">{{ trans('teachers.Email') }}</label>
+                                        <input type="email" name="Email" class="form-control">
+                                        @error('Email')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col">
+                                        <label for="title">{{ trans('teachers.Password') }}</label>
+                                        <input type="password" name="password" class="form-control">
+                                        @error('password')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                                <br>
 
-                        <div class="container">
-                            <!-- Add New Row Button -->
-                            <div class="row mt-4">
-                                <div class="col-lg-3">
-                                    <button class="btn btn-success btn-lg w-100" data-repeater-create type="button">
-                                        {{ trans('tables.add') }}
-                                    </button>
+
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="title">{{ trans('teachers.Name_ar') }}</label>
+                                        <input type="text" name="name[ar]" class="form-control">
+                                        @error('name.ar')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="col">
+                                        <label for="title">{{ trans('teachers.Name_en') }}</label>
+                                        <input type="text" name="name[en]" class="form-control">
+                                        @error('name.en')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
+                                <br>
+                                <div class="form-row">
+                                    <div class="form-group col">
+                                        <label for="inputCity">{{ trans('teachers.specialization') }}</label>
+                                        <select class="custom-select my-1 mr-sm-2" name="specialization_id">
+                                            <option selected disabled>{{ trans('parents.Choose') }}...</option>
+                                            @foreach ($specializations as $specialization)
+                                                <option value="{{ $specialization->id }}">{{ $specialization->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                        @error('specialization_id')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="form-group col">
+                                        <label for="inputState">{{ trans('teachers.Gender') }}</label>
+                                        <select class="custom-select my-1 mr-sm-2" name="gender_id">
+                                            <option selected disabled>{{ trans('parents.Choose') }}...</option>
+                                            @foreach ($genders as $gender)
+                                                <option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        @error('gender_id')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <br>
 
-                        <!-- Modal Footer -->
-                        <div class="modal-footer mt-4">
-                            <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">
-                                {{ trans('tables.cancel') }}
-                            </button>
-                            <button type="submit" class="btn btn-success btn-lg">
-                                {{ trans('tables.save') }}
-                            </button>
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label for="title">{{ trans('teachers.Joining_Date') }}</label>
+                                        <div class='input-group date'>
+                                            <input class="form-control" type="text" id="datepicker-action"
+                                                name="Joining_Date" data-date-format="yyyy-mm-dd" >
+                                        </div>
+                                        @error('Joining_Date')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                                <br>
+
+                                <div class="form-group">
+                                    <label for="exampleFormControlTextarea1">{{ trans('teachers.Address') }}</label>
+                                    <textarea class="form-control" name="address" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                    @error('address')
+                                        <div class="alert alert-danger">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <button class="btn btn-success btn-sm nextBtn btn-lg pull-right"
+                                    type="submit">{{ trans('tables.save') }}</button>
+                            </form>
                         </div>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
+@endsection

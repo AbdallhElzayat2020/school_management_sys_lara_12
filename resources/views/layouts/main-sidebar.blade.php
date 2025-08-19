@@ -79,14 +79,17 @@
 
                     <!-- menu item Charts-->
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#chart">
-                            <div class="pull-left"><i class="ti-pie-chart"></i><span
-                                    class="right-nav-text">Charts</span></div>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#teachers">
+                            <div class="pull-left">
+                                <i class="ti-calendar"></i>
+                                <span class="right-nav-text">{{__('teachers.teachers')}}</span>
+                            </div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
-                        <ul id="chart" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="chart-js.html">Chart.js</a></li>
+                        <ul id="teachers" class="collapse" data-parent="#sidebarnav">
+                            <li><a href="{{ route('teachers.index') }}">{{__('teachers.teacher_list')}} </a></li>
+                            <li><a href="{{ route('teachers.create') }}">{{__('teachers.add_teacher')}} </a></li>
                         </ul>
                     </li>
 

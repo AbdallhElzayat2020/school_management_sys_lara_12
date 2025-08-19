@@ -1,5 +1,18 @@
 <?php
 return [
-    'teachers' => 'المعلمون',
-    'teacher_list' => 'قائمة المعلمين',
+    'teachers' => 'Teachers',
+    'teacher_list' => 'Teacher List',
+    'add_teacher' => 'Add Teacher',
+    'Name_Teacher' => 'Name Teacher',
+    'Add_Teacher' => 'Add Teacher',
+    'Edit_Teacher' => 'Edit Teacher',
+    'Delete_Teacher' => 'Delete Teacher',
+    'Email' => 'Email',
+    'Password' => 'Password',
+    'Name_ar' => 'Name_ar',
+    'Name_en' => 'Name_en',
+    'specialization' => 'specialization',
+    'Gender' => 'Gender',
+    'Joining_Date' => 'Joining_Date',
+    'Address' => 'Address',
 ];
