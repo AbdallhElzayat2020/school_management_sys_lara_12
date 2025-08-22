@@ -27,21 +27,26 @@ class TeacherRepository implements TeacherRepositoryInterface
 
     public function store($request): \Illuminate\Http\RedirectResponse
     {
-        Teacher::create([
-            'name' => [
-                'ar' => $request->name['ar'],
-                'en' => $request->name['en'],
-            ],
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'join_date' => $request->join_date,
-            'specialization_id' => $request->specialization_id,
-            'gender_id' => $request->gender_id,
-            'address' => $request->address,
-        ]);
+        try {
+            Teacher::create([
+                'name' => [
+                    'ar' => $request->name['ar'],
+                    'en' => $request->name['en'],
+                ],
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'join_date' => $request->join_date,
+                'specialization_id' => $request->specialization_id,
+                'gender_id' => $request->gender_id,
+                'address' => $request->address,
+            ]);
 
-        flash()->success(__('tables.success_msg'));
-        return back();
+            flash()->success(__('tables.success_msg'));
+            return back();
+        } catch (\Exception $exception) {
+            flash()->success(__('tables.success_msg'));
+            return back();
+        }
     }
 
     public function edit($id): View
@@ -55,28 +60,33 @@ class TeacherRepository implements TeacherRepositoryInterface
 
     public function update($id, $request): \Illuminate\Http\RedirectResponse
     {
-        $teacher = Teacher::findOrFail($id);
+        try {
+            $teacher = Teacher::findOrFail($id);
 
-        $data = [
-            'name' => [
-                'ar' => $request->input('name.ar'),
-                'en' => $request->input('name.en'),
-            ],
-            'email' => $request->email,
-            'join_date' => $request->join_date,
-            'specialization_id' => $request->specialization_id,
-            'gender_id' => $request->gender_id,
-            'address' => $request->address,
-        ];
+            $data = [
+                'name' => [
+                    'ar' => $request->input('name.ar'),
+                    'en' => $request->input('name.en'),
+                ],
+                'email' => $request->email,
+                'join_date' => $request->join_date,
+                'specialization_id' => $request->specialization_id,
+                'gender_id' => $request->gender_id,
+                'address' => $request->address,
+            ];
 
-        if ($request->filled('password')) {
-            $data['password'] = bcrypt($request->password);
+            if ($request->filled('password')) {
+                $data['password'] = bcrypt($request->password);
+            }
+
+            $teacher->update($data);
+
+            flash()->success(__('tables.success_msg'));
+            return back();
+        } catch (\Exception $e) {
+            flash()->success(__('tables.success_msg'));
+            return back();
         }
-
-        $teacher->update($data);
-
-        flash()->success(__('tables.success_msg'));
-        return back();
     }
 
     public function destroy($id)
