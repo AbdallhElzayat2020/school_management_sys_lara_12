@@ -36,11 +36,14 @@ class SectionController extends Controller
                 'grade_id' => $request->grade_id,
                 'classroom_id' => $request->classroom_id,
             ]);
+            $section->teachers()->attach($request->teacher_id);
+
             if (!$section->save()) {
                 toastr()->error(__('tables.error_msg'));
                 return back();
             }
-            $section->teachers()->attach($request->teacher_id);
+
+
             toastr()->success(__('tables.success_msg'));
             return redirect()->route('sections.index');
         } catch (\Exception $e) {
@@ -64,7 +67,7 @@ class SectionController extends Controller
                 'classroom_id' => $request->classroom_id,
                 'status' => $request->status,
             ]);
-
+            $section->teachers()->sync($request->teacher_id);
             if (!$section->save()) {
                 toastr()->error(__('tables.error_msg'));
                 return back();
@@ -81,10 +84,6 @@ class SectionController extends Controller
     {
         try {
             $section = Section::findOrFail($id);
-            if (!$section) {
-                toastr()->error(__('tables.error_msg'));
-                return redirect()->route('sections.index');
-            }
             $section->delete();
             toastr()->success(__('tables.success_msg'));
             return redirect()->route('sections.index');
