@@ -9,6 +9,7 @@ return [
     'Delete_Teacher' => 'Delete Teacher',
     'Email' => 'Email',
     'Password' => 'Password',
+    'password_confirmation' => 'Password Confirmation',
     'Name_ar' => 'Name_ar',
     'Name_en' => 'Name_en',
     'specialization' => 'specialization',

@@ -54,16 +54,15 @@
                                             <tr>
 
                                                 <td>{{ $index + 1 }}</td>
-                                                <td>{{$teacher->name}}</td>
+                                                <td>{{$teacher->getTranslation('name',app()->getLocale())}}</td>
                                                 <td>{{$teacher->gender->name}}</td>
-                                                <td>{{$teacher->Joining_Date}}</td>
+                                                <td>{{$teacher->join_date}}</td>
                                                 <td>{{$teacher->specialization->name}}</td>
                                                 <td>
                                                     <a href="{{route('teachers.edit',$teacher->id)}}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_Teacher{{ $teacher->id }}" title="{{ trans('Grades_trans.Delete') }}"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_{{ $teacher->id }}" title="{{ trans('tables.delete') }}"><i class="fa fa-trash"></i></button>
                                                 </td>
                                             </tr>
-
                                         @include('pages.teachers.delete')
                                         @endforeach
                                     </table>

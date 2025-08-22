@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Section;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Sections\StoreSectionRequest;
+use App\Http\Requests\Sections\UpdateSectionRequest;
 use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Section;
@@ -48,7 +49,7 @@ class SectionController extends Controller
 
 
     public
-    function update(Request $request, string $id): ?\Illuminate\Http\RedirectResponse
+    function update(UpdateSectionRequest $request, string $id): ?\Illuminate\Http\RedirectResponse
     {
         try {
             $section = Section::findOrFail($id);
@@ -62,6 +63,7 @@ class SectionController extends Controller
                 'classroom_id' => $request->classroom_id,
                 'status' => $request->status,
             ]);
+
             if (!$section->save()) {
                 toastr()->error(__('tables.error_msg'));
                 return back();

@@ -6,7 +6,7 @@ use App\Interfaces\TeacherRepositoryInterface;
 use App\Repositories\TeacherRepository;
 use Illuminate\Support\ServiceProvider;
 
-class TeacherProvider extends ServiceProvider
+class TeacherServiceProvider extends ServiceProvider
 {
     /**
      * Register services.

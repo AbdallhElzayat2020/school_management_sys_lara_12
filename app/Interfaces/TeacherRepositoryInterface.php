@@ -8,5 +8,11 @@ interface TeacherRepositoryInterface
 
     public function create();
 
-    public function store($data);
+    public function store($request);
+
+    public function edit($id);
+
+    public function update($id, $request);
+
+    public function destroy($id);
 }

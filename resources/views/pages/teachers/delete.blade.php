@@ -1,4 +1,4 @@
-<div class="modal fade" id="delete{{ $teacher->id }}" tabindex="-1" role="dialog"
+<div class="modal fade" id="delete_{{ $teacher->id }}" tabindex="-1" role="dialog"
      aria-labelledby="deleteModalLabel{{ $teacher->id }}" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

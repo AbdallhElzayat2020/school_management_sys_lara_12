@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Teacher;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Teachers\StoreTeacherRequest;
+use App\Http\Requests\Teachers\UpdateTeacherRequest;
 use App\Models\Teacher;
 use App\Repositories\TeacherRepository;
 use Illuminate\Http\Request;
@@ -28,32 +30,27 @@ class TeacherController extends Controller
         return $this->teacherRepository->create();
     }
 
-    public function store(Request $request)
+    public function store(StoreTeacherRequest $request)
     {
         return $this->teacherRepository->store($request);
     }
 
 
-    public function show(string $id)
-    {
-        //
-    }
-
-
     public function edit(string $id)
     {
-        //
+        return $this->teacherRepository->edit($id);
+
     }
 
-    public function update(Request $request, string $id)
+    public function update(UpdateTeacherRequest $request, string $id)
     {
-        //
+        return $this->teacherRepository->update($id, $request);
     }
 
 
     public function destroy(string $id)
     {
-        //
+        return $this->teacherRepository->destroy($id);
     }
 
 

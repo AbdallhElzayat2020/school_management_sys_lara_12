@@ -9,6 +9,7 @@ return [
     'Delete_Teacher' => 'حذف معلم',
     'Email' => 'البريد الالكتروني',
     'Password' => 'كلمة المرور',
+    'password_confirmation' => 'تأكيد كلمة المرور',
     'Name_ar' => 'اسم المعلم باللغة العربية',
     'Name_en' => 'اسم المعلم باللغة الانجليزية',
     'specialization' => 'التخصص',

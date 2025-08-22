@@ -24,8 +24,9 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="title">{{ trans('teachers.Email') }}</label>
-                                        <input type="email" name="Email" class="form-control">
-                                        @error('Email')
+                                        <input type="email" name="email" value="{{ old('email') }}"
+                                            class="form-control">
+                                        @error('email')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -36,6 +37,13 @@
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
+                                    <div class="col">
+                                        <label for="title">{{ trans('teachers.password_confirmation') }}</label>
+                                        <input type="password" name="password_confirmation" class="form-control">
+                                        @error('password_confirmation')
+                                            <div class="alert alert-danger">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                                 <br>
 
@@ -43,14 +51,16 @@
                                 <div class="form-row">
                                     <div class="col">
                                         <label for="title">{{ trans('teachers.Name_ar') }}</label>
-                                        <input type="text" name="name[ar]" class="form-control">
+                                        <input type="text" name="name[ar]" value="{{ old('name.ar') }}"
+                                            class="form-control">
                                         @error('name.ar')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col">
                                         <label for="title">{{ trans('teachers.Name_en') }}</label>
-                                        <input type="text" name="name[en]" class="form-control">
+                                        <input type="text" name="name[en]" value="{{ old('name.en') }}"
+                                            class="form-control">
                                         @error('name.en')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
@@ -63,7 +73,9 @@
                                         <select class="custom-select my-1 mr-sm-2" name="specialization_id">
                                             <option selected disabled>{{ trans('parents.Choose') }}...</option>
                                             @foreach ($specializations as $specialization)
-                                                <option value="{{ $specialization->id }}">{{ $specialization->name }}
+                                                <option value="{{ $specialization->id }}"
+                                                    {{ $specialization->id == old('specialization_id') ? 'selected' : '' }}>
+                                                    {{ $specialization->name }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -76,7 +88,10 @@
                                         <select class="custom-select my-1 mr-sm-2" name="gender_id">
                                             <option selected disabled>{{ trans('parents.Choose') }}...</option>
                                             @foreach ($genders as $gender)
-                                                <option value="{{ $gender->id }}">{{ $gender->name }}</option>
+                                                <option value="{{ $gender->id }}"
+                                                    {{ $gender->id == old('gender_id') ? 'selected' : '' }}>
+                                                    {{ $gender->name }}
+                                                </option>
                                             @endforeach
                                         </select>
                                         @error('gender_id')
@@ -91,9 +106,10 @@
                                         <label for="title">{{ trans('teachers.Joining_Date') }}</label>
                                         <div class='input-group date'>
                                             <input class="form-control" type="text" id="datepicker-action"
-                                                name="Joining_Date" data-date-format="yyyy-mm-dd" >
+                                                name="join_date" value="{{ old('join_date') }}"
+                                                data-date-format="yyyy-mm-dd">
                                         </div>
-                                        @error('Joining_Date')
+                                        @error('join_date')
                                             <div class="alert alert-danger">{{ $message }}</div>
                                         @enderror
                                     </div>
@@ -102,7 +118,7 @@
 
                                 <div class="form-group">
                                     <label for="exampleFormControlTextarea1">{{ trans('teachers.Address') }}</label>
-                                    <textarea class="form-control" name="address" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                    <textarea class="form-control" name="address" id="exampleFormControlTextarea1" rows="4">{{ old('address') }}</textarea>
                                     @error('address')
                                         <div class="alert alert-danger">{{ $message }}</div>
                                     @enderror
