@@ -3,7 +3,6 @@
 namespace App\Http\Requests\Teachers;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class StoreTeacherRequest extends FormRequest
 {

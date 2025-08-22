@@ -8,7 +8,7 @@ use App\Http\Requests\Sections\UpdateSectionRequest;
 use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Section;
-use Illuminate\Http\Request;
+use App\Models\Teacher;
 
 class SectionController extends Controller
 {
@@ -17,15 +17,15 @@ class SectionController extends Controller
      */
     public function index()
     {
-        $grades = Grade::with('sections')->get();
 
-        $list_grades = Grade::with('sections', 'classrooms')->get();
-
-        return view('pages.sections.index', compact('grades', 'list_grades'));
+        return view('pages.sections.index', [
+            'grades' => Grade::with(['sections', 'classrooms'])->get(),
+            'teachers' => Teacher::select('id', 'name')->get(),
+        ]);
     }
 
 
-    public function store(StoreSectionRequest $request): ?\Illuminate\Http\RedirectResponse
+    public function store(StoreSectionRequest $request)
     {
         try {
             $section = Section::create([
@@ -40,6 +40,7 @@ class SectionController extends Controller
                 toastr()->error(__('tables.error_msg'));
                 return back();
             }
+            $section->teachers()->attach($request->teacher_id);
             toastr()->success(__('tables.success_msg'));
             return redirect()->route('sections.index');
         } catch (\Exception $e) {
@@ -110,8 +111,7 @@ class SectionController extends Controller
         return redirect()->back();
     }
 
-    public
-    function getClasses($id)
+    public function getClasses($id)
     {
         return Classroom::where('grade_id', $id)->pluck('class_name', 'id');
     }

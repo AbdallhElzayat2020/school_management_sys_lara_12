@@ -32,11 +32,9 @@
                                class="control-label">{{ trans('sections.Name_Grade') }}</label>
                         <select name="grade_id" class="custom-select" onchange="console.log($(this).val())">
                             <!--placeholder-->
-                            <option value="" selected disabled>{{ trans('sections.Select_Grade') }}
-                            </option>
-                            @foreach ($list_grades as $list_grade)
-                                <option value="{{ $list_grade->id }}"> {{ $list_grade->name }}
-                                </option>
+                            <option value="" selected disabled>{{ trans('sections.Select_Grade') }}</option>
+                            @foreach ($grades as $grade)
+                                <option value="{{ $grade->id }}"> {{ $grade->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -48,10 +46,19 @@
                         <select name="classroom_id" class="custom-select"></select>
                     </div>
 
+                    <div class="col">
+                        <label for="inputName" class="control-label">{{ trans('teachers.Name_Teacher') }}</label>
+                        <select multiple name="teacher_id[]" class="form-control" id="exampleFormControlSelect2">
+                            @foreach($teachers as $teacher)
+                                <option value="{{$teacher->id}}">{{$teacher->getTranslation('name',app()->getLocale())}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary"
                                 data-dismiss="modal">{{ trans('tables.cancel') }}</button>
-                        <button type="submit" class="btn btn-danger">{{ trans('tables.save') }}</button>
+                        <button type="submit" class="btn btn-success">{{ trans('tables.save') }}</button>
                     </div>
                 </form>
             </div>

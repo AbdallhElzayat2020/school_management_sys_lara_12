@@ -1,58 +1,42 @@
-<div class="modal fade"
-     id="edit{{ $list_section->id }}"
-     tabindex="-1" role="dialog"
-     aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
+<div class="modal fade" id="edit{{ $section->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title"
-                    style="font-family: 'Cairo', sans-serif;"
-                    id="exampleModalLabel">
+                <h5 class="modal-title" style="font-family: 'Cairo', sans-serif;" id="exampleModalLabel">
                     {{ trans('sections.edit_Section') }}
                 </h5>
-                <button type="button" class="close"
-                        data-dismiss="modal"
-                        aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
 
-                <form
-                    action="{{ route('sections.update',$list_section->id) }}" method="POST">
+                <form action="{{ route('sections.update', $section->id) }}" method="POST">
                     @method('PUT')
                     @csrf
                     <div class="row">
                         <div class="col">
-                            <input type="text"
-                                   name="section_name[ar]"
-                                   class="form-control"
-                                   value="{{ $list_section->getTranslation('section_name', 'ar') }}">
+                            <input type="text" name="section_name[ar]" class="form-control"
+                                value="{{ $section->getTranslation('section_name', 'ar') }}">
                         </div>
 
                         <div class="col">
-                            <input type="text"
-                                   name="section_name[en]"
-                                   class="form-control"
-                                   value="{{ $list_section->getTranslation('section_name', 'en') }}">
-                            <input id="id"
-                                   type="hidden"
-                                   name="id"
-                                   class="form-control"
-                                   value="{{ $list_section->id }}">
+                            <input type="text" name="section_name[en]" class="form-control"
+                                value="{{ $section->getTranslation('section_name', 'en') }}">
+                            <input id="id" type="hidden" name="id" class="form-control"
+                                value="{{ $section->id }}">
                         </div>
                     </div>
                     <br>
 
 
                     <div class="col">
-                        <label for="inputName"
-                               class="control-label">{{ trans('sections.Name_Grade') }}</label>
+                        <label for="inputName" class="control-label">{{ trans('sections.Name_Grade') }}</label>
                         <select name="grade_id" class="custom-select" onclick="console.log($(this).val())">
-                            @foreach ($list_grades as $list_grade)
-                                <option @selected(old('grade_id', $list_section->grade_id) == $list_grade->id) value="{{ $list_grade->id }}">
-                                    {{ $list_grade->name }}
+                            @foreach ($grades as $grade)
+                                <option @selected(old('grade_id', $section->grade_id) == $grade->id) value="{{ $grade->id }}">
+                                    {{ $grade->name }}
                                 </option>
                             @endforeach
                         </select>
@@ -62,35 +46,35 @@
                     <div class="col">
                         <label for="inputName" class="control-label">{{ trans('sections.Name_Class') }}</label>
                         <select name="classroom_id" class="custom-select">
-                            <option value="{{ $list_section->classroom->id }}">
-                                {{ $list_section->classroom->class_name }}
+                            <option value="{{ $section->classroom->id }}">
+                                {{ $section->classroom->class_name }}
                             </option>
                         </select>
                     </div>
                     <br>
 
-{{--                    <div class="col">--}}
-{{--                        <div class="form-check">--}}
-
-{{--                            @if ($list_section->status === 'active')--}}
-{{--                                <input type="checkbox" checked class="form-check-input" name="Status" id="exampleCheck1">--}}
-{{--                            @else--}}
-{{--                                <input type="checkbox" class="form-check-input" name="Status" id="exampleCheck1">--}}
-{{--                            @endif--}}
-{{--                            <label class="form-check-label" for="exampleCheck1">{{ trans('classrooms.status') }}</label>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-
                     <div class="form-group">
-                        <label for="status{{ $list_section->id }}"
-                               class="mr-sm-2">{{ trans('grades.grade_status') }}:</label>
-                        <select class="form-control" name="status" id="status{{ $list_section->id }}" required>
-                            <option value="active" @selected(old('status', $list_section->status) == 'active')>
+                        <label for="status{{ $section->id }}"
+                            class="mr-sm-2">{{ trans('grades.grade_status') }}:</label>
+                        <select class="form-control" name="status" id="status{{ $section->id }}" required>
+                            <option value="active" @selected(old('status', $section->status) == 'active')>
                                 {{ trans('grades.active') }}
                             </option>
-                            <option value="inactive" @selected(old('status', $list_section->status) == 'inactive')>
+                            <option value="inactive" @selected(old('status', $section->status) == 'inactive')>
                                 {{ trans('grades.inactive') }}
                             </option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <label for="inputName" class="control-label">{{ trans('teachers.Name_Teacher') }}</label>
+                        <select multiple name="teacher_id[]" class="form-control" id="exampleFormControlSelect2">
+                            @foreach ($teachers as $teacher)
+                                <option @selected(in_array($teacher->id, old('teacher_id', $section->teachers->pluck('id')->toArray())))
+                                        value="{{ $teacher->id }}">
+                                    {{ $teacher->getTranslation('name', app()->getLocale()) }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
 

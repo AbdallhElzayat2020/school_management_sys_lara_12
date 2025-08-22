@@ -1,5 +1,5 @@
 <div class="modal fade"
-     id="delete{{ $list_section->id }}"
+     id="delete{{ $section->id }}"
      tabindex="-1" role="dialog"
      aria-labelledby="exampleModalLabel"
      aria-hidden="true">
@@ -19,14 +19,14 @@
             </div>
             <div class="modal-body">
                 <form
-                    action="{{ route('sections.destroy',$list_section->id) }}" method="post">
+                    action="{{ route('sections.destroy',$section->id) }}" method="post">
                     @method('DELETE')
                     @csrf
                     {{ trans('tables.warning_delete') }}
                     <input id="id" type="hidden"
                            name="id"
                            class="form-control"
-                           value="{{ $list_section->id }}">
+                           value="{{ $section->id }}">
                     <div class="modal-footer">
                         <button type="button"
                                 class="btn btn-secondary"
