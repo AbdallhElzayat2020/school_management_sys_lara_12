@@ -7,7 +7,8 @@
                     <!-- menu item Dashboard-->
                     <li>
                         <a href="{{ route('dashboard.index') }}" data-toggle="collapse" data-target="#dashboard">
-                            <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">{{__('dashboard.dashboard')}}</span>
+                            <div class="pull-left"><i class="ti-home"></i><span
+                                    class="right-nav-text">{{ __('dashboard.dashboard') }}</span>
                             </div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
@@ -19,13 +20,13 @@
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#grades">
                             <div class="pull-left"><i class="ti-palette"></i>
-                                <span class="right-nav-text">{{__('grades.grades')}}</span>
+                                <span class="right-nav-text">{{ __('grades.grades') }}</span>
                             </div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="grades" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="{{ route('grades.index') }}">{{__('grades.grades_menu')}}</a></li>
+                            <li><a href="{{ route('grades.index') }}">{{ __('grades.grades_menu') }}</a></li>
                         </ul>
                     </li>
                     <!-- menu item classrooms-->
@@ -33,13 +34,13 @@
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#calendar-menu">
                             <div class="pull-left">
                                 <i class="ti-calendar"></i>
-                                <span class="right-nav-text">{{__('classrooms.page_title')}}</span>
+                                <span class="right-nav-text">{{ __('classrooms.page_title') }}</span>
                             </div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="calendar-menu" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="{{ route('classrooms.index') }}">{{__('classrooms.classrooms')}} </a></li>
+                            <li><a href="{{ route('classrooms.index') }}">{{ __('classrooms.classrooms') }} </a></li>
                         </ul>
                     </li>
                     <!-- menu item classrooms-->
@@ -49,13 +50,13 @@
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#sections">
                             <div class="pull-left">
                                 <i class="ti-calendar"></i>
-                                <span class="right-nav-text">{{__('sections.title_page')}}</span>
+                                <span class="right-nav-text">{{ __('sections.title_page') }}</span>
                             </div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="sections" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="{{ route('sections.index') }}">{{__('sections.list_section')}} </a></li>
+                            <li><a href="{{ route('sections.index') }}">{{ __('sections.list_section') }} </a></li>
                         </ul>
                     </li>
                     <!-- menu item Sections-->
@@ -65,48 +66,50 @@
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#parents">
                             <div class="pull-left">
                                 <i class="ti-calendar"></i>
-                                <span class="right-nav-text">{{__('parents.parents')}}</span>
+                                <span class="right-nav-text">{{ __('parents.parents') }}</span>
                             </div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="parents" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="{{ route('parents.index') }}">{{__('parents.list_parents')}} </a></li>
-                            <li><a href="{{ route('parents.create') }}">{{__('parents.add_parent')}} </a></li>
+                            <li><a href="{{ route('parents.index') }}">{{ __('parents.list_parents') }} </a></li>
+                            <li><a href="{{ route('parents.create') }}">{{ __('parents.add_parent') }} </a></li>
                         </ul>
                     </li>
                     <!-- menu item parents-->
 
-                    <!-- menu item Charts-->
+                    <!-- menu item teachers-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#teachers">
                             <div class="pull-left">
                                 <i class="ti-calendar"></i>
-                                <span class="right-nav-text">{{__('teachers.teachers')}}</span>
+                                <span class="right-nav-text">{{ __('teachers.teachers') }}</span>
                             </div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="teachers" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="{{ route('teachers.index') }}">{{__('teachers.teacher_list')}} </a></li>
-                            <li><a href="{{ route('teachers.create') }}">{{__('teachers.add_teacher')}} </a></li>
+                            <li><a href="{{ route('teachers.index') }}">{{ __('teachers.teacher_list') }} </a></li>
+                            <li><a href="{{ route('teachers.create') }}">{{ __('teachers.add_teacher') }} </a></li>
                         </ul>
                     </li>
 
-                    <!-- menu font icon-->
+                    <!-- menu item students-->
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#font-icon">
-                            <div class="pull-left"><i class="ti-home"></i><span class="right-nav-text">font
-                                    icon</span></div>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students">
+                            <div class="pull-left">
+                                <i class="ti-calendar"></i>
+                                <span class="right-nav-text">{{ __('students.students_management') }}</span>
+                            </div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
-                        <ul id="font-icon" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="fontawesome-icon.html">font Awesome</a></li>
-                            <li><a href="themify-icons.html">Themify icons</a></li>
-                            <li><a href="weather-icon.html">Weather icons</a></li>
+                        <ul id="students" class="collapse" data-parent="#sidebarnav">
+                            <li><a href="{{ route('students.index') }}">{{ __('students.student_list') }} </a></li>
+                            <li><a href="{{ route('students.create') }}">{{ __('students.add_student') }} </a></li>
                         </ul>
                     </li>
+
                     <!-- menu title -->
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">Widgets, Forms & Tables</li>
                     <!-- menu item Widgets-->
@@ -136,7 +139,8 @@
                     <!-- menu item table -->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#table">
-                            <div class="pull-left"><i class="ti-layout-tab-window"></i><span class="right-nav-text">data
+                            <div class="pull-left"><i class="ti-layout-tab-window"></i><span
+                                    class="right-nav-text">data
                                     table</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
@@ -211,7 +215,8 @@
                                 </a>
                                 <ul id="auth" class="collapse">
                                     <li>
-                                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#login">Level
+                                        <a href="javascript:void(0);" data-toggle="collapse"
+                                            data-target="#login">Level
                                             item 1.1
                                             <div class="pull-right"><i class="ti-plus"></i></div>
                                             <div class="clearfix"></div>
@@ -219,9 +224,8 @@
                                         <ul id="login" class="collapse">
                                             <li>
                                                 <a href="javascript:void(0);" data-toggle="collapse"
-                                                   data-target="#invoice">level item 1.1.1
-                                                    <div class="pull-right"><i
-                                                            class="ti-plus"></i></div>
+                                                    data-target="#invoice">level item 1.1.1
+                                                    <div class="pull-right"><i class="ti-plus"></i></div>
                                                     <div class="clearfix"></div>
                                                 </a>
                                                 <ul id="invoice" class="collapse">

@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -19,6 +20,21 @@ return Application::configure(basePath: dirname(__DIR__))
             'localeCookieRedirect' => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
             'localeViewPath' => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class
         ]);
+
+
+        $middleware->redirectGuestsTo(function () {
+            if (request()->is('*/dashboard/*')) {
+                return route('dashboard.login');
+            }
+            return route('login');
+        });
+
+        $middleware->redirectUsersTo(function () {
+            if (Auth::guard('admin')->check()) {
+                return route('dashboard.welcome');
+            }
+            return route('home');
+        });
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

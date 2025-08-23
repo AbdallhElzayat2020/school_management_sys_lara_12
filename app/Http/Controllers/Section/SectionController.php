@@ -114,4 +114,9 @@ class SectionController extends Controller
     {
         return Classroom::where('grade_id', $id)->pluck('class_name', 'id');
     }
+
+    public function getSections($id)
+    {
+        return Section::where('grade_id', $id)->pluck('section_name', 'id');
+    }
 }

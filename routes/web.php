@@ -1,13 +1,15 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 use App\Http\Controllers\Classrooms\ClassroomController;
 use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\Parents\StudentParentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Section\SectionController;
 use App\Http\Controllers\Teacher\TeacherController;
-use Illuminate\Support\Facades\Route;
-use Livewire\Livewire;
+use App\Http\Controllers\Students\StudentController;
+
 
 Route::get('/', function () {
     return view('auth.login');
@@ -41,6 +43,7 @@ Route::group(
         /*  ============ Sections Routes ============  */
         Route::resource('sections', SectionController::class);
         Route::get('get-classes/{id}', [SectionController::class, 'getClasses'])->name('sections.get-classes');
+        Route::get('get-sections/{id}', [SectionController::class, 'getSections'])->name('get-sections');
         Route::post('sections/change-status/{id}', [SectionController::class, 'changeStatus'])->name('sections.change-status');
 
         /*  ============ Parents Routes ============  */
@@ -51,6 +54,11 @@ Route::group(
         /*  ============ Parents Routes ============  */
         Route::resource('teachers', TeacherController::class);
         Route::post('teachers/change-status/{id}', [TeacherController::class, 'changeStatus'])->name('teacher.change-status');
+
+        /*  ============ Students Routes ============  */
+        Route::resource('students', StudentController::class);
+        Route::post('students/change-status/{id}', [StudentController::class, 'changeStatus'])->name('student.change-status');
+
 
         /*  For laravel localization with livewire   */
         Livewire::setUpdateRoute(function ($handle) {

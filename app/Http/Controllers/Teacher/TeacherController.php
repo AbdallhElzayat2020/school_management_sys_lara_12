@@ -54,7 +54,21 @@ class TeacherController extends Controller
     }
 
 
-    public function changeStatus()
+    public function changeStatus($id)
     {
+        $teacher = Teacher::findOrFail($id);
+
+        if ($teacher->status == 'active') {
+            $teacher->update([
+                'status' => 'inactive',
+            ]);
+            toastr()->success(__('tables.update_msg'));
+            return redirect()->back();
+        }
+        $teacher->update([
+            'status' => 'active',
+        ]);
+        toastr()->success(__('tables.update_msg'));
+        return redirect()->back();
     }
 }
