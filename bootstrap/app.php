@@ -22,19 +22,19 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
 
-        $middleware->redirectGuestsTo(function () {
-            if (request()->is('*/dashboard/*')) {
-                return route('dashboard.login');
-            }
-            return route('login');
-        });
+        // $middleware->redirectGuestsTo(function () {
+        //     if (request()->is('*/dashboard/*')) {
+        //         return route('dashboard.login');
+        //     }
+        //     return route('login');
+        // });
 
-        $middleware->redirectUsersTo(function () {
-            if (Auth::guard('admin')->check()) {
-                return route('dashboard.welcome');
-            }
-            return route('home');
-        });
+        // $middleware->redirectUsersTo(function () {
+        //     if (Auth::guard('admin')->check()) {
+        //         return route('dashboard.welcome');
+        //     }
+        //     return route('home');
+        // });
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

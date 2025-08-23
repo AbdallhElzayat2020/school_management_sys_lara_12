@@ -4,9 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Spatie\Translatable\HasTranslations;
 
 class Student extends Model
 {
+    use HasTranslations;
+
+    public $translatable = ['name'];
+
     protected $table = 'students';
     protected $fillable = [
         'name',
@@ -18,7 +23,7 @@ class Student extends Model
         'grade_id',
         'classroom_id',
         'section_id',
-        'student_parent_id',
+        'parent_id',
         'date_birth',
         'academic_year',
     ];

@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
+            $table->text('name');
+            $table->string('email')->unique();
             $table->string('password');
             $table->foreignId('gender_id')->constrained('genders');
             $table->foreignId('blood_type_id')->constrained('type_bloods');
@@ -21,7 +21,7 @@ return new class extends Migration {
             $table->foreignId('grade_id')->constrained('grades');
             $table->foreignId('classroom_id')->constrained('classrooms');
             $table->foreignId('section_id')->constrained('sections');
-            $table->foreignId('student_parent_id')->constrained('my_parents');
+            $table->foreignId('parent_id')->constrained('my_parents');
             $table->date('date_birth');
             $table->year('academic_year');
             $table->timestamps();

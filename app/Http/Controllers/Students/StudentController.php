@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Students;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreStudentRequest;
 use App\Models\Student;
 use App\Repositories\StudentRepository;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-
     public StudentRepository $studentRepository;
 
     public function __construct(StudentRepository $studentRepository)
@@ -29,9 +29,9 @@ class StudentController extends Controller
     }
 
 
-    public function store(Request $request)
+    public function store(StoreStudentRequest $request)
     {
-        //
+        return $this->studentRepository->storeStudent($request);
     }
 
 
@@ -62,5 +62,7 @@ class StudentController extends Controller
         //
     }
 
-    public function changeStatus() {}
+    public function changeStatus()
+    {
+    }
 }

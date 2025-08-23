@@ -78,7 +78,7 @@
                                 <div class="form-group">
                                     <label for="nal_id">{{ trans('students.Nationality') }} : <span
                                             class="text-danger">*</span></label>
-                                    <select class="custom-select mr-sm-2" name="nationalitie_id">
+                                    <select class="custom-select mr-sm-2" name="nationality_id">
                                         <option selected disabled>{{ trans('parents.Choose') }}...</option>
                                         @foreach ($nationalities as $nationality)
                                             <option value="{{ $nationality->id }}">{{ $nationality->name }}</option>
@@ -90,7 +90,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="bg_id">{{ trans('students.blood_type') }} : </label>
-                                    <select class="custom-select mr-sm-2" name="blood_id">
+                                    <select class="custom-select mr-sm-2" name="blood_type_id">
                                         <option selected disabled>{{ trans('parents.Choose') }}...</option>
                                         @foreach ($bloods as $blood)
                                             <option value="{{ $blood->id }}">{{ $blood->name }}</option>
@@ -118,8 +118,8 @@
                                             class="text-danger">*</span></label>
                                     <select class="custom-select mr-sm-2" name="grade_id">
                                         <option selected disabled>{{ trans('parents.Choose') }}...</option>
-                                        @foreach ($grades as $grades)
-                                            <option value="{{ $grades->id }}">{{ $grades->name }}</option>
+                                        @foreach ($grades as $grade)
+                                            <option value="{{ $grade->id }}">{{ $grade->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -192,16 +192,18 @@
                         dataType: "json",
                         success: function(data) {
                             $('select[name="classroom_id"]').empty();
+                            $('select[name="classroom_id"]').append(
+                                '<option selected disabled >{{ trans('parents.Choose') }}...</option>'
+                            );
                             $.each(data, function(key, value) {
-                                $('select[name="classroom_id"]').append(
-                                    '<option selected disabled >{{ trans('parents.Choose') }}...</option>'
-                                );
                                 $('select[name="classroom_id"]').append(
                                     '<option value="' + key + '">' + value +
                                     '</option>');
                             });
                         },
                     });
+                }else {
+                    console.log('error ajax')
                 }
             });
         });
@@ -227,6 +229,8 @@
 
                         },
                     });
+                }else {
+                    console.log('error ajax')
                 }
             });
         });

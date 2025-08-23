@@ -45,6 +45,7 @@ Route::group(
         Route::get('get-classes/{id}', [SectionController::class, 'getClasses'])->name('sections.get-classes');
         Route::get('get-sections/{id}', [SectionController::class, 'getSections'])->name('get-sections');
         Route::post('sections/change-status/{id}', [SectionController::class, 'changeStatus'])->name('sections.change-status');
+        // ======================= get classes and sections in ajax =======================
 
         /*  ============ Parents Routes ============  */
 
