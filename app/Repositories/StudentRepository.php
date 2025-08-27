@@ -3,22 +3,20 @@
 namespace App\Repositories;
 
 use App\Models\Grade;
+use App\Models\Image;
 use App\Models\Gender;
+use App\Models\Student;
+use App\Models\MyParent;
 use App\Models\Classroom;
 use App\Models\TypeBlood;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
+use Illuminate\Support\Str;
 use App\Models\Nationalitie;
 use App\Interfaces\StudentRepositoryInterface;
-use App\Models\MyParent;
-use App\Models\Student;
-use Illuminate\View\View;
 
 class StudentRepository implements StudentRepositoryInterface
 {
-    public function getAllStudents()
-    {
-        return Student::with(['section', 'gender', 'grade', 'classroom'])->paginate(9);
-    }
-
     public function getNationalities()
     {
         return Nationalitie::all();
@@ -49,6 +47,11 @@ class StudentRepository implements StudentRepositoryInterface
         return MyParent::all();
     }
 
+    public function getAllStudents()
+    {
+        return Student::with(['section', 'gender', 'grade', 'classroom'])->paginate(9);
+    }
+
     public function createStudent(): View
     {
         $genders = $this->getGenders();
@@ -70,29 +73,48 @@ class StudentRepository implements StudentRepositoryInterface
 
     public function storeStudent($request)
     {
-        $student = Student::create([
-            'name' => [
-                'ar' => $request->name['ar'],
-                'en' => $request->name['en'],
-            ],
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'academic_year' => $request->academic_year,
-            'classroom_id' => $request->classroom_id,
-            'blood_type_id' => $request->blood_type_id,
-            'date_birth' => $request->date_birth,
-            'gender_id' => $request->gender_id,
-            'nationality_id' => $request->nationality_id,
-            'parent_id' => $request->parent_id,
-            'grade_id' => $request->grade_id,
-            'section_id' => $request->section_id,
-        ]);
 
-        if (!$student->save()) {
-            flash()->error(__('tables.error_msg'));
+        try {
+            DB::beginTransaction();
+            $student = Student::create([
+                'name' => [
+                    'ar' => $request->name['ar'],
+                    'en' => $request->name['en'],
+                ],
+                'email' => $request->email,
+                'password' => bcrypt($request->password),
+                'academic_year' => $request->academic_year,
+                'classroom_id' => $request->classroom_id,
+                'blood_type_id' => $request->blood_type_id,
+                'date_birth' => $request->date_birth,
+                'gender_id' => $request->gender_id,
+                'nationality_id' => $request->nationality_id,
+                'parent_id' => $request->parent_id,
+                'grade_id' => $request->grade_id,
+                'section_id' => $request->section_id,
+            ]);
+
+            if ($request->hasFile('photos')) {
+                foreach ($request->photos as $file) {
+                    $filename = $file->getClientOriginalName();
+                    $path = 'attachments/students/' . Str::slug($request->name['en']);
+
+                    $file->storeAs($path, $filename, 'upload_attachments');
+
+                    $imgModel = new Image();
+                    $imgModel->url = $path . '/' . $filename;
+                    $imgModel->imageable_id = $student->id;
+                    $imgModel->imageable_type = Student::class;
+                    $imgModel->save();
+                }
+            }
+            DB::commit();
+            flash()->success(__('tables.success_msg'));
+            return back();
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return redirect()->back()->withErrors(['error' => $exception->getMessage()]);
         }
-        flash()->success(__('tables.success_msg'));
-        return back();
     }
 
 
@@ -110,8 +132,10 @@ class StudentRepository implements StudentRepositoryInterface
         $grades = $this->getGrades();
         $classrooms = $this->getClassrooms();
         $parents = $this->getParents();
-        return view('pages.students.edit',
-            compact('student', 'nationalities', 'nationalities', 'classrooms', 'genders', 'bloods', 'grades', 'parents'));
+        return view(
+            'pages.students.edit',
+            compact('student', 'nationalities', 'nationalities', 'classrooms', 'genders', 'bloods', 'grades', 'parents')
+        );
     }
 
     public function updateStudent(int $id, $request)
@@ -137,6 +161,27 @@ class StudentRepository implements StudentRepositoryInterface
             'section_id' => $request->section_id,
         ]);
 
+        // Handle photo uploads
+        if ($request->hasFile('photos')) {
+            foreach ($request->photos as $file) {
+                $filename = $file->getClientOriginalName();
+                $path = 'attachments/students/' . Str::slug($request->name['en']);
+
+                $file->storeAs($path, $filename, 'upload_attachments');
+
+                $student->images()->create([
+                    'url' => $path . '/' . $filename,
+                    'imageable_id' => $student->id,
+                    'imageable_type' => Student::class,
+                ]);
+                // $imgModel = new Image();
+                // $imgModel->url = $path . '/' . $filename;
+                // $imgModel->imageable_id = $student->id;
+                // $imgModel->imageable_type = Student::class;
+                // $imgModel->save();
+            }
+        }
+
         flash()->success(__('tables.success_msg'));
         return back();
     }
@@ -148,5 +193,4 @@ class StudentRepository implements StudentRepositoryInterface
         flash()->success(__('tables.delete_msg'));
         return back();
     }
-
 }

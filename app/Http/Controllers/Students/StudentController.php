@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Students;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\students\StoreStudentRequest;
 use App\Http\Requests\students\UpdateStudentRequest;
+use App\Models\Student;
 use App\Repositories\StudentRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class StudentController extends Controller
 {
@@ -32,6 +34,7 @@ class StudentController extends Controller
 
     public function store(StoreStudentRequest $request)
     {
+//        return $request;
         return $this->studentRepository->storeStudent($request);
     }
 
@@ -56,5 +59,4 @@ class StudentController extends Controller
     {
         return $this->studentRepository->deleteStudent($id);
     }
-
 }

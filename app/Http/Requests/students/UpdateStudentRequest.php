@@ -34,6 +34,9 @@ class UpdateStudentRequest extends FormRequest
             'grade_id' => ['required', 'exists:grades,id'],
             'classroom_id' => ['required', 'exists:classrooms,id'],
             'section_id' => ['required', 'exists:sections,id'],
+            'parent_id' => ['required', 'exists:my_parents,id'],
+            'academic_year' => ['required', 'integer'],
+            'photos.*' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ];
     }
 
@@ -52,6 +55,9 @@ class UpdateStudentRequest extends FormRequest
             'grade_id' => __('students.Grade'),
             'classroom_id' => __('students.classrooms'),
             'section_id' => __('students.section'),
+            'parent_id' => __('students.parent'),
+            'academic_year' => __('students.academic_year'),
+            'photos.*' => 'الصور',
         ];
     }
 }

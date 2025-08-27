@@ -17,7 +17,8 @@
                         </div>
                     @endif
 
-                    <form method="post" action="{{ route('students.store') }}" autocomplete="off">
+                    <form method="post" action="{{ route('students.store') }}" autocomplete="off"
+                        enctype="multipart/form-data">
                         @csrf
                         <h6 style="font-family: 'Cairo', sans-serif;color: blue">{{ trans('students.personal_information') }}
                         </h6><br>
@@ -55,7 +56,7 @@
 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>{{ trans('students.password_confirmation') }} :</label>
+                                    <label>{{ trans('teachers.password_confirmation') }} :</label>
                                     <input type="password" name="password_confirmation" class="form-control">
                                 </div>
                             </div>
@@ -168,6 +169,14 @@
                                     </select>
                                 </div>
                             </div>
+                            <br>
+                            <div class="col-md-3 mt-3">
+                                <div class="form-group">
+                                    <label for="photos">{{ trans('parents.Attachments') }} : <span
+                                            class="text-danger">*</span></label>
+                                    <input type="file" accept="image/*" name="photos[]" id="photos" multiple>
+                                </div>
+                            </div>
                         </div>
                         <br>
                         <button class="btn btn-success btn-sm nextBtn btn-lg pull-right"
@@ -202,7 +211,7 @@
                             });
                         },
                     });
-                }else {
+                } else {
                     console.log('error ajax')
                 }
             });
@@ -226,10 +235,9 @@
                                     '<option value="' + key + '">' + value +
                                     '</option>');
                             });
-
                         },
                     });
-                }else {
+                } else {
                     console.log('error ajax')
                 }
             });

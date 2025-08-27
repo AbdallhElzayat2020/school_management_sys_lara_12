@@ -17,7 +17,8 @@
                         </div>
                     @endif
 
-                    <form method="post" action="{{ route('students.update', $student->id) }}" autocomplete="off">
+                    <form method="post" action="{{ route('students.update', $student->id) }}" autocomplete="off"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <h6 style="font-family: 'Cairo', sans-serif;color: blue">{{ trans('students.personal_information') }}
@@ -200,6 +201,42 @@
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Photos section -->
+                        <h6 style="font-family: 'Cairo', sans-serif;color: blue">
+                            {{ trans('parents.Attachments') ?? 'الصور' }}</h6><br>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="photos">{{ trans('parents.Attachments') }} :</label>
+                                    <input type="file" accept="image/*" name="photos[]" id="photos" multiple
+                                        class="form-control">
+                                    <small class="text-muted">يمكنك اختيار صور متعددة</small>
+                                </div>
+                            </div>
+
+                            @if ($student->images && $student->images->count() > 0)
+                                <div class="col-md-6">
+                                    <label>Images</label>
+                                    <div class="row">
+                                        @foreach ($student->images as $image)
+                                            <div class="col-md-3 mb-2">
+                                                @php
+                                                    $imagePath = public_path($image->url);
+                                                @endphp
+                                                @if (file_exists($imagePath))
+                                                    <img src="{{ asset($image->url) }}" class="img-thumbnail"
+                                                        style="max-height: 100px;">
+                                                @else
+                                                    <div class="text-danger">صورة مفقودة</div>
+                                                @endif
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+                        </div>
+
                         <br>
                         <button class="btn btn-success btn-sm nextBtn btn-lg pull-right"
                             type="submit">{{ trans('students.edit') ?? 'تحديث' }}</button>
