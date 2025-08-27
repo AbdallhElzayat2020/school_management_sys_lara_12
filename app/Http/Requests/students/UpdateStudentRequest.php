@@ -26,7 +26,7 @@ class UpdateStudentRequest extends FormRequest
             'name.ar' => ['required', 'string', 'max:255'],
             'name.en' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:students,email,' . $id],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['nullable', 'string', 'min:8', 'confirmed'],
             'gender_id' => ['required', 'exists:genders,id'],
             'nationality_id' => ['required', 'exists:nationalities,id'],
             'blood_type_id' => ['required', 'exists:type_bloods,id'],
