@@ -61,15 +61,11 @@
                                                 <td>{{ $student->classroom->class_name }}</td>
                                                 <td>{{ $student->section->section_name }}</td>
                                                 <td>
-                                                    <a href="{{ route('students.edit', $student->id) }}"
-                                                       class="btn btn-info btn-sm" role="button"
-                                                       aria-pressed="true"><i class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-danger btn-sm"
-                                                            data-toggle="modal" data-target="#delete_{{ $student->id }}"
-                                                            title="{{ trans('tables.delete') }}"><i
-                                                                class="fa fa-trash"></i>
+                                                    <a href="{{ route('students.edit', $student->id) }}" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete_{{ $student->id }}" title="{{ trans('tables.delete') }}">
+                                                        <i class="fa fa-trash"></i>
                                                     </button>
-                                                    <a href="#" class="btn btn-warning btn-sm mx-1" role="button" aria-pressed="true"><i class="far fa-eye"></i></a>
+                                                    <a href="{{ route('students.show',$student->id) }}" class="btn btn-warning btn-sm mx-1" role="button" aria-pressed="true"><i class="far fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                         @include('pages.students.delete')

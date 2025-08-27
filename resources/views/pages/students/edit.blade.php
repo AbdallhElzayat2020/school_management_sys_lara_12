@@ -18,7 +18,7 @@
                     @endif
 
                     <form method="post" action="{{ route('students.update', $student->id) }}" autocomplete="off"
-                        enctype="multipart/form-data">
+                          enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <h6 style="font-family: 'Cairo', sans-serif;color: blue">{{ trans('students.personal_information') }}
@@ -28,8 +28,8 @@
                                 <div class="form-group">
                                     <label>{{ trans('students.name_ar') }} : <span class="text-danger">*</span></label>
                                     <input type="text" name="name[ar]"
-                                        value="{{ old('name.ar', $student->getTranslation('name', 'ar')) }}"
-                                        class="form-control">
+                                           value="{{ old('name.ar', $student->getTranslation('name', 'ar')) }}"
+                                           class="form-control">
                                 </div>
                             </div>
 
@@ -37,7 +37,7 @@
                                 <div class="form-group">
                                     <label>{{ trans('students.name_en') }} : <span class="text-danger">*</span></label>
                                     <input class="form-control" name="name[en]"
-                                        value="{{ old('name.en', $student->getTranslation('name', 'en')) }}" type="text">
+                                           value="{{ old('name.en', $student->getTranslation('name', 'en')) }}" type="text">
                                 </div>
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                                 <div class="form-group">
                                     <label>{{ trans('students.email') }} : </label>
                                     <input type="email" name="email" value="{{ old('email', $student->email) }}"
-                                        class="form-control">
+                                           class="form-control">
                                 </div>
                             </div>
 
@@ -56,7 +56,7 @@
                                 <div class="form-group">
                                     <label>{{ trans('students.password') }} :</label>
                                     <input type="password" name="password" class="form-control"
-                                        placeholder="اتركه فارغاً إذا لم تريد تغييره">
+                                           placeholder="اتركه فارغاً إذا لم تريد تغييره">
                                 </div>
                             </div>
 
@@ -115,8 +115,8 @@
                                 <div class="form-group">
                                     <label>{{ trans('students.Date_of_Birth') }} :</label>
                                     <input class="form-control" type="text" id="datepicker-action" name="date_birth"
-                                        value="{{ old('date_birth', $student->date_birth) }}"
-                                        data-date-format="yyyy-mm-dd">
+                                           value="{{ old('date_birth', $student->date_birth) }}"
+                                           data-date-format="yyyy-mm-dd">
                                 </div>
                             </div>
                         </div>
@@ -210,7 +210,7 @@
                                 <div class="form-group">
                                     <label for="photos">{{ trans('parents.Attachments') }} :</label>
                                     <input type="file" accept="image/*" name="photos[]" id="photos" multiple
-                                        class="form-control">
+                                           class="form-control">
                                     <small class="text-muted">يمكنك اختيار صور متعددة</small>
                                 </div>
                             </div>
@@ -226,7 +226,7 @@
                                                 @endphp
                                                 @if (file_exists($imagePath))
                                                     <img src="{{ asset($image->url) }}" class="img-thumbnail"
-                                                        style="max-height: 100px;">
+                                                         style="max-height: 100px;">
                                                 @else
                                                     <div class="text-danger">صورة مفقودة</div>
                                                 @endif
@@ -239,7 +239,7 @@
 
                         <br>
                         <button class="btn btn-success btn-sm nextBtn btn-lg pull-right"
-                            type="submit">{{ trans('students.edit') ?? 'تحديث' }}</button>
+                                type="submit">{{ trans('students.edit') ?? 'تحديث' }}</button>
                     </form>
 
                 </div>
@@ -250,7 +250,7 @@
 @endsection
 @section('js')
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Load classrooms for selected grade on page load
             var selectedGradeId = $('select[name="grade_id"]').val();
             if (selectedGradeId) {
@@ -263,7 +263,7 @@
                 loadSections(selectedClassroomId, {{ $student->section_id ?? 'null' }});
             }
 
-            $('select[name="grade_id"]').on('change', function() {
+            $('select[name="grade_id"]').on('change', function () {
                 var grade_id = $(this).val();
                 if (grade_id) {
                     loadClassrooms(grade_id);
@@ -278,12 +278,12 @@
                     url: "{{ URL::to('get-classes') }}/" + gradeId,
                     type: "GET",
                     dataType: "json",
-                    success: function(data) {
+                    success: function (data) {
                         $('select[name="classroom_id"]').empty();
                         $('select[name="classroom_id"]').append(
                             '<option selected disabled >{{ trans('parents.Choose') }}...</option>'
                         );
-                        $.each(data, function(key, value) {
+                        $.each(data, function (key, value) {
                             var selected = selectedClassroomId == key ? 'selected' : '';
                             $('select[name="classroom_id"]').append(
                                 '<option value="' + key + '" ' + selected + '>' + value +
@@ -302,8 +302,8 @@
     </script>
 
     <script>
-        $(document).ready(function() {
-            $('select[name="classroom_id"]').on('change', function() {
+        $(document).ready(function () {
+            $('select[name="classroom_id"]').on('change', function () {
                 var classroom_id = $(this).val();
                 if (classroom_id) {
                     loadSections(classroom_id);
@@ -317,9 +317,9 @@
                     url: "{{ URL::to('get-sections') }}/" + classroomId,
                     type: "GET",
                     dataType: "json",
-                    success: function(data) {
+                    success: function (data) {
                         $('select[name="section_id"]').empty();
-                        $.each(data, function(key, value) {
+                        $.each(data, function (key, value) {
                             var selected = selectedSectionId == key ? 'selected' : '';
                             $('select[name="section_id"]').append(
                                 '<option value="' + key + '" ' + selected + '>' + value +

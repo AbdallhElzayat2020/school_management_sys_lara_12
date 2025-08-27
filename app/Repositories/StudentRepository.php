@@ -49,7 +49,7 @@ class StudentRepository implements StudentRepositoryInterface
 
     public function getAllStudents()
     {
-        return Student::with(['section', 'gender', 'grade', 'classroom'])->paginate(9);
+        return Student::with(['section', 'gender', 'grade', 'classroom', 'images'])->paginate(9);
     }
 
     public function createStudent(): View
@@ -73,7 +73,6 @@ class StudentRepository implements StudentRepositoryInterface
 
     public function storeStudent($request)
     {
-
         try {
             DB::beginTransaction();
             $student = Student::create([
@@ -109,6 +108,7 @@ class StudentRepository implements StudentRepositoryInterface
                 }
             }
             DB::commit();
+
             flash()->success(__('tables.success_msg'));
             return back();
         } catch (\Exception $exception) {
@@ -121,6 +121,12 @@ class StudentRepository implements StudentRepositoryInterface
     public function getStudentById(int $id)
     {
         return Student::findOrFail($id);
+    }
+
+    public function showStudent($id)
+    {
+        $student = $this->getStudentById($id);
+        return view('pages.students.show', compact('student'));
     }
 
     public function editStudent(int $id)
@@ -137,6 +143,7 @@ class StudentRepository implements StudentRepositoryInterface
             compact('student', 'nationalities', 'nationalities', 'classrooms', 'genders', 'bloods', 'grades', 'parents')
         );
     }
+
 
     public function updateStudent(int $id, $request)
     {
@@ -169,16 +176,11 @@ class StudentRepository implements StudentRepositoryInterface
 
                 $file->storeAs($path, $filename, 'upload_attachments');
 
-                $student->images()->create([
+                $student->images()->update([
                     'url' => $path . '/' . $filename,
                     'imageable_id' => $student->id,
                     'imageable_type' => Student::class,
                 ]);
-                // $imgModel = new Image();
-                // $imgModel->url = $path . '/' . $filename;
-                // $imgModel->imageable_id = $student->id;
-                // $imgModel->imageable_type = Student::class;
-                // $imgModel->save();
             }
         }
 
@@ -191,6 +193,27 @@ class StudentRepository implements StudentRepositoryInterface
         $student = $this->getStudentById($id);
         $student->delete();
         flash()->success(__('tables.delete_msg'));
+        return back();
+    }
+
+
+    public function uploadAttachment($request): \Illuminate\Http\RedirectResponse
+    {
+        if ($request->hasFile('photos')) {
+            foreach ($request->photos as $file) {
+                $filename = $file->getClientOriginalName();
+                $path = 'attachments/students/' . $request->student_name;
+
+                $file->storeAs($path, $filename, 'upload_attachments');
+
+                $imgModel = new Image();
+                $imgModel->url = $path . '/' . $filename;
+                $imgModel->imageable_id = $request->student_id;
+                $imgModel->imageable_type = Student::class;
+                $imgModel->save();
+            }
+        }
+        flash()->success(__('tables.success_msg'));
         return back();
     }
 }

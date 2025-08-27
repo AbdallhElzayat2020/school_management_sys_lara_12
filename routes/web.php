@@ -58,7 +58,7 @@ Route::group(
 
         /*  ============ Students Routes ============  */
         Route::resource('students', StudentController::class);
-
+        Route::post('upload_attachment', [StudentController::class, 'uploadAttachment'])->name('students.upload_attachment');
 
         /*  For laravel localization with livewire   */
         Livewire::setUpdateRoute(function ($handle) {
