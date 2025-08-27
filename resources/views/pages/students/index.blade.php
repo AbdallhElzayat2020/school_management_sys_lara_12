@@ -67,7 +67,9 @@
                                                     <button type="button" class="btn btn-danger btn-sm"
                                                             data-toggle="modal" data-target="#delete_{{ $student->id }}"
                                                             title="{{ trans('tables.delete') }}"><i
-                                                                class="fa fa-trash"></i></button>
+                                                                class="fa fa-trash"></i>
+                                                    </button>
+                                                    <a href="#" class="btn btn-warning btn-sm mx-1" role="button" aria-pressed="true"><i class="far fa-eye"></i></a>
                                                 </td>
                                             </tr>
                                         @include('pages.students.delete')

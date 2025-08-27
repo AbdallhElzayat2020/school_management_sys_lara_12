@@ -143,6 +143,10 @@ class StudentRepository implements StudentRepositoryInterface
 
     public function deleteStudent(int $id)
     {
-        return $this->getStudentById($id)->delete();
+        $student = $this->getStudentById($id);
+        $student->delete();
+        flash()->success(__('tables.delete_msg'));
+        return back();
     }
+
 }

@@ -58,7 +58,6 @@ Route::group(
 
         /*  ============ Students Routes ============  */
         Route::resource('students', StudentController::class);
-        Route::post('students/change-status/{id}', [StudentController::class, 'changeStatus'])->name('student.change-status');
 
 
         /*  For laravel localization with livewire   */

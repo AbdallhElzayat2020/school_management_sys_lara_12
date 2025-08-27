@@ -24,7 +24,7 @@ interface StudentRepositoryInterface
 
     public function getAllStudents();
 
-    public function updateStudent(int $id, array $request);
+    public function updateStudent(int $id, $request);
 
     public function editStudent(int $id);
 

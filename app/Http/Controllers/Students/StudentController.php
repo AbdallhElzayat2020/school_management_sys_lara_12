@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Students;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\students\StoreStudentRequest;
+use App\Http\Requests\students\UpdateStudentRequest;
 use App\Repositories\StudentRepository;
 use Illuminate\Http\Request;
 
@@ -43,7 +44,7 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateStudentRequest $request, string $id)
     {
         return $this->studentRepository->updateStudent($id, $request);
     }
@@ -53,8 +54,7 @@ class StudentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        return $this->studentRepository->deleteStudent($id);
     }
 
-    public function changeStatus() {}
 }
