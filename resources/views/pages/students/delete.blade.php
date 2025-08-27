@@ -1,10 +1,10 @@
-<div class="modal fade" id="delete_{{ $teacher->id }}" tabindex="-1" role="dialog"
-     aria-labelledby="deleteModalLabel{{ $teacher->id }}" aria-hidden="true">
+<div class="modal fade" id="delete_{{ $student->id }}" tabindex="-1" role="dialog"
+     aria-labelledby="deleteModalLabel{{ $student->id }}" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title"
-                    id="deleteModalLabel{{ $teacher->id }}">
+                    id="deleteModalLabel{{ $student->id }}">
                     <b style="font-size: 22px!important;"> {{ trans('tables.warning_delete') }}</b>
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -12,10 +12,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('teachers.destroy', $teacher->id) }}" method="post">
+                <form action="{{ route('students.destroy', $student->id) }}" method="post">
                     @method('DELETE')
                     @csrf
-                    {{ trans('tables.warning_delete') }} {{ $teacher->getTranslation('name', app()->getLocale()) }} ?
+                    {{ trans('tables.warning_delete') }} {{ $student->getTranslation('name', app()->getLocale()) }} ?
                     <br>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">

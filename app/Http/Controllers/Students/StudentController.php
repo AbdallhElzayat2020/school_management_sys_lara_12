@@ -19,7 +19,8 @@ class StudentController extends Controller
 
     public function index()
     {
-        return view('pages.students.index');
+        $students = $this->studentRepository->getAllStudents();
+        return view('pages.students.index', compact('students'));
     }
 
 
@@ -35,15 +36,9 @@ class StudentController extends Controller
     }
 
 
-    public function show(string $id)
-    {
-        //
-    }
-
-
     public function edit(string $id)
     {
-        //
+        return $this->studentRepository->editStudent($id);
     }
 
     /**
@@ -51,7 +46,7 @@ class StudentController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        return $this->studentRepository->updateStudent($id, $request);
     }
 
     /**
@@ -62,7 +57,5 @@ class StudentController extends Controller
         //
     }
 
-    public function changeStatus()
-    {
-    }
+    public function changeStatus() {}
 }

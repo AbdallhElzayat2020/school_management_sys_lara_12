@@ -28,6 +28,8 @@ class Student extends Model
         'academic_year',
     ];
 
+
+    /* ================= relation ships =================  */
     public function gender(): BelongsTo
     {
         return $this->belongsTo(Gender::class);
@@ -62,7 +64,6 @@ class Student extends Model
     {
         return $this->belongsTo(MyParent::class);
     }
-
 
     public function images()
     {
