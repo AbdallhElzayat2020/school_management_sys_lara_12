@@ -117,7 +117,6 @@ class StudentRepository implements StudentRepositoryInterface
         }
     }
 
-
     public function getStudentById(int $id)
     {
         return Student::with(['images', 'grade', 'classroom', 'section', 'parent'])->findOrFail($id);
