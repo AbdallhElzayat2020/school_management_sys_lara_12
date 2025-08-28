@@ -12,4 +12,5 @@ return [
     'add_grade' => 'Add Grade',
     'edit_grade' => 'Edit Grade',
     'delete_grade' => 'Delete Grade',
+    'student_promotion' => 'Student Promotion',
 ];

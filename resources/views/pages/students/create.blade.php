@@ -115,8 +115,7 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <label for="grade_id">{{ trans('students.Grade') }} : <span
-                                            class="text-danger">*</span></label>
+                                    <label for="grade_id">{{ trans('students.Grade') }} : <span class="text-danger">*</span></label>
                                     <select class="custom-select mr-sm-2" name="grade_id">
                                         <option selected disabled>{{ trans('parents.Choose') }}...</option>
                                         @foreach ($grades as $grade)

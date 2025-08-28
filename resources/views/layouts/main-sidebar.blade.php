@@ -110,6 +110,21 @@
                         </ul>
                     </li>
 
+                    <!-- menu item students_Promotions-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students_Promotions">
+                            <div class="pull-left">
+                                <i class="ti-calendar"></i>
+                                <span class="right-nav-text">{{ __('dashboard.student_promotion') }}</span>
+                            </div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="students_Promotions" class="collapse" data-parent="#sidebarnav">
+                            <li><a href="{{ route('student-promotion.index') }}">{{ __('dashboard.student_promotion') }} </a></li>
+                        </ul>
+                    </li>
+
                     <!-- menu title -->
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">Widgets, Forms & Tables</li>
                     <!-- menu item Widgets-->
@@ -216,7 +231,7 @@
                                 <ul id="auth" class="collapse">
                                     <li>
                                         <a href="javascript:void(0);" data-toggle="collapse"
-                                            data-target="#login">Level
+                                           data-target="#login">Level
                                             item 1.1
                                             <div class="pull-right"><i class="ti-plus"></i></div>
                                             <div class="clearfix"></div>
@@ -224,7 +239,7 @@
                                         <ul id="login" class="collapse">
                                             <li>
                                                 <a href="javascript:void(0);" data-toggle="collapse"
-                                                    data-target="#invoice">level item 1.1.1
+                                                   data-target="#invoice">level item 1.1.1
                                                     <div class="pull-right"><i class="ti-plus"></i></div>
                                                     <div class="clearfix"></div>
                                                 </a>

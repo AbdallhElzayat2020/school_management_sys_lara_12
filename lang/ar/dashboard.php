@@ -17,4 +17,5 @@ return [
     'grade_notes' => 'ملاحظات المرحلة الدراسية',
     'active' => 'نشط',
     'inactive' => 'غير نشط',
+    'student_promotion' => 'ترقية الطلاب'
 ];

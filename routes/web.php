@@ -9,7 +9,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Section\SectionController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\Students\StudentController;
-
+use App\Http\Controllers\Students\StudentPromotionsController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -61,6 +61,9 @@ Route::group(
         Route::post('upload_attachment', [StudentController::class, 'uploadAttachment'])->name('students.upload_attachment');
         Route::delete('delete_attachment', [StudentController::class, 'deleteAttachment'])->name('students.delete_attachment');
         Route::get('download_attachment/{student_name}/{file_name}', [StudentController::class, 'downloadAttachment'])->name('students.download_attachment');
+
+        /*  ============ student-promotion Routes ============  */
+        Route::resource('student-promotion', StudentPromotionsController::class);
 
         /*  For laravel localization with livewire   */
         Livewire::setUpdateRoute(function ($handle) {
