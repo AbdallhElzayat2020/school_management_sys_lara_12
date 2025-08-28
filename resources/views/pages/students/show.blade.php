@@ -1,6 +1,27 @@
 @extends('layouts.master')
-@section('title',__('students.Student_details'))
+@section('title', __('students.Student_details'))
 
+@push('css')
+    <style>
+        .card-img-top {
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .card-img-top:hover {
+            transform: scale(1.05);
+        }
+
+        .btn-group .btn {
+            margin-right: 2px;
+        }
+
+        .modal-lg .modal-body img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+@endpush
 @section('content')
     <!-- row -->
     <div class="row">
@@ -65,56 +86,174 @@
                                 <div class="tab-pane fade" id="profile-02" role="tabpanel" aria-labelledby="profile-02-tab">
                                     <div class="card card-statistics">
                                         <div class="card-body">
-                                            <form method="post" action="{{ route('students.upload_attachment') }}" enctype="multipart/form-data">
+                                            <form method="post" action="{{ route('students.upload_attachment') }}"
+                                                  enctype="multipart/form-data">
                                                 @csrf
-                                                <div class="col-md-3">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="academic_year">{{ trans('students.Attachments') }}: <span class="text-danger">*</span></label>
-                                                        <input type="file" accept="image/*" name="photos[]" multiple required>
-                                                        <input type="hidden" name="student_name" value="{{ $student->name }}">
-                                                        <input type="hidden" name="student_id" value="{{ $student->id }}">
+                                                        <label for="academic_year">{{ trans('students.Attachments') }}:
+                                                            <span class="text-danger">*</span></label>
+                                                        <input type="file" accept="image/*" name="photos[]" multiple
+                                                               required class="form-control">
+                                                        <input type="hidden" name="student_name"
+                                                               value="{{ $student->name }}">
+                                                        <input type="hidden" name="student_id"
+                                                               value="{{ $student->id }}">
+                                                        <small class="text-muted">يمكنك اختيار صور متعددة</small>
                                                     </div>
                                                 </div>
-                                                <br><br>
-                                                <button type="submit" class="button button-border x-small">
+                                                <br>
+                                                <button type="submit" class="btn btn-success btn-sm">
                                                     {{ trans('students.submit') }}
                                                 </button>
                                             </form>
                                         </div>
                                         <br>
-                                        <table class="table center-aligned-table mb-0 table table-hover"
-                                               style="text-align:center">
-                                            <thead>
-                                            <tr class="table-secondary">
-                                                <th scope="col">#</th>
-                                                <th scope="col">{{ trans('students.filename') }}</th>
-                                                <th scope="col">{{ trans('students.created_at') }}</th>
-                                                <th scope="col">{{ trans('students.Processes') }}</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            @foreach ($student->images as $attachment)
-                                                <tr style='text-align:center;vertical-align:middle'>
-                                                    <td>{{ $loop->iteration }}</td>
-                                                    <td>{{ $attachment->url }}</td>
-                                                    <td>{{ $attachment->created_at->diffForHumans() }}</td>
-                                                    <td colspan="2">
-                                                        <a class="btn btn-outline-info btn-sm" href="{{ url('Download_attachment') }}/{{ $attachment->imageable->url }}/{{ $attachment->url }}"
-                                                           role="button"><i class="fas fa-download"></i>&nbsp;
-                                                            {{ trans('students.Download') }}</a>
 
-                                                        <button type="button" class="btn btn-outline-danger btn-sm"
-                                                                data-toggle="modal"
-                                                                data-target="#Delete_img{{ $attachment->id }}"
-                                                                title="{{ trans('Grades_trans.Delete') }}">{{ trans('students.delete') }}
-                                                        </button>
+                                        @if ($student->images && $student->images->count() > 0)
+                                            <!-- Gallery View -->
+                                            <div class="row mb-4">
+                                                <div class="col-12">
+                                                    <h5>{{ trans('students.image_gallery') ?? 'معرض الصور' }}</h5>
+                                                    <div class="row">
+                                                        @foreach ($student->images as $attachment)
+                                                            <div class="col-md-3 mb-3">
+                                                                <div class="card">
+                                                                    @php
+                                                                        $imagePath = public_path($attachment->url);
+                                                                    @endphp
+                                                                    @if (file_exists($imagePath))
+                                                                        <img src="{{ asset($attachment->url) }}"
+                                                                             class="card-img-top"
+                                                                             style="height: 200px; object-fit: cover;"
+                                                                             data-toggle="modal"
+                                                                             data-target="#imageModal{{ $attachment->id }}"
+                                                                             style="cursor: pointer;">
+                                                                    @else
+                                                                        <div class="card-img-top d-flex align-items-center justify-content-center bg-light"
+                                                                             style="height: 200px;">
+                                                                            <span class="text-danger">صورة مفقودة</span>
+                                                                        </div>
+                                                                    @endif
+                                                                    <div class="card-body p-2">
+                                                                        <h6 class="card-title text-truncate">
+                                                                            {{ basename($attachment->url) }}</h6>
+                                                                        <small
+                                                                            class="text-muted">{{ $attachment->created_at->diffForHumans() }}</small>
+                                                                        <div class="btn-group w-100 mt-2">
+                                                                            <a class="btn btn-primary btn-sm"
+                                                                               href="{{ asset($attachment->url) }}"
+                                                                               target="_blank">
+                                                                                <i class="fas fa-eye"></i> معاينة
+                                                                            </a>
+                                                                            <a class="btn btn-success btn-sm"
+                                                                               href="{{ asset($attachment->url) }}"
+                                                                               download="{{ basename($attachment->url) }}">
+                                                                                <i class="fas fa-download"></i> تحميل
+                                                                            </a>
+                                                                            <button type="button"
+                                                                                    class="btn btn-danger btn-sm"
+                                                                                    data-toggle="modal"
+                                                                                    data-target="#Delete_img{{ $attachment->id }}">
+                                                                                <i class="fas fa-trash"></i> حذف
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                    </td>
+                                                            <!-- Image Modal -->
+                                                            <div class="modal fade" id="imageModal{{ $attachment->id }}"
+                                                                 tabindex="-1" role="dialog">
+                                                                <div class="modal-dialog modal-lg" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title">
+                                                                                {{ basename($attachment->url) }}</h5>
+                                                                            <button type="button" class="close"
+                                                                                    data-dismiss="modal">
+                                                                                <span>&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body text-center">
+                                                                            @if (file_exists(public_path($attachment->url)))
+                                                                                <img src="{{ asset($attachment->url) }}"
+                                                                                     class="img-fluid">
+                                                                            @else
+                                                                                <p class="text-danger">الصورة غير موجودة
+                                                                                </p>
+                                                                            @endif
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <a class="btn btn-success"
+                                                                               href="{{ asset($attachment->url) }}"
+                                                                               download="{{ basename($attachment->url) }}">
+                                                                                <i class="fas fa-download"></i> تحميل
+                                                                            </a>
+                                                                            <button type="button"
+                                                                                    class="btn btn-secondary"
+                                                                                    data-dismiss="modal">إغلاق
+                                                                            </button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <!-- Table View -->
+                                            <table class="table center-aligned-table mb-0 table table-hover"
+                                                   style="text-align:center">
+                                                <thead>
+                                                <tr class="table-secondary">
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">{{ trans('students.filename') }}</th>
+                                                    <th scope="col">{{ trans('students.created_at') }}</th>
+                                                    <th scope="col">{{ trans('students.Processes') }}</th>
                                                 </tr>
-                                                @include('pages.students.delete_img')
-                                            @endforeach
-                                            </tbody>
-                                        </table>
+                                                </thead>
+                                                <tbody>
+                                                @foreach ($student->images as $attachment)
+                                                    <tr style='text-align:center;vertical-align:middle'>
+                                                        <td>{{ $loop->iteration }}</td>
+                                                        <td>{{ basename($attachment->url) }}</td>
+                                                        <td>{{ $attachment->created_at->diffForHumans() }}</td>
+                                                        <td>
+                                                            <div class="btn-group">
+                                                                <a class="btn btn-outline-primary btn-sm"
+                                                                   href="{{ asset($attachment->url) }}"
+                                                                   target="_blank" title="معاينة">
+                                                                    <i class="fas fa-eye"></i> معاينة
+                                                                </a>
+                                                                <a class="btn btn-outline-success btn-sm"
+                                                                   href="{{ asset($attachment->url) }}"
+                                                                   download="{{ basename($attachment->url) }}"
+                                                                   title="تحميل">
+                                                                    <i class="fas fa-download"></i> تحميل
+                                                                </a>
+                                                                <button type="button"
+                                                                        class="btn btn-outline-danger btn-sm"
+                                                                        data-toggle="modal"
+                                                                        data-target="#Delete_img{{ $attachment->id }}"
+                                                                        title="{{ trans('tables.delete') }}">
+                                                                    <i class="fas fa-trash"></i>
+                                                                    {{ trans('students.delete') }}
+                                                                </button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    @include('pages.students.delete_img')
+                                                @endforeach
+                                                </tbody>
+                                            </table>
+                                        @else
+                                            <div class="alert alert-info text-center">
+                                                <i class="fas fa-info-circle"></i>
+                                                لا توجد صور مرفوعة لهذا الطالب
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -126,6 +265,7 @@
 
             <!-- row closed -->
 @endsection
+
 @section('js')
 
 @endsection

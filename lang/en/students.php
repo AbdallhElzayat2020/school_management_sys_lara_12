@@ -34,6 +34,7 @@ return [
     'created_at' => 'created_at',
     'Download' => 'Download',
     'delete' => 'Delete',
+    'image_gallery' => 'Image Gallery'
 
 
 ];

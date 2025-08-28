@@ -47,18 +47,25 @@ class StudentController extends Controller
         return $this->studentRepository->editStudent($id);
     }
 
-
     public function update(UpdateStudentRequest $request, string $id)
     {
         return $this->studentRepository->updateStudent($id, $request);
     }
-
 
     public function uploadAttachment(Request $request)
     {
         return $this->studentRepository->uploadAttachment($request);
     }
 
+    public function deleteAttachment(Request $request)
+    {
+        return $this->studentRepository->deleteAttachment($request);
+    }
+
+    public function downloadAttachment($student_name, $file_name)
+    {
+        return $this->studentRepository->downloadAttachment($student_name, $file_name);
+    }
 
     public function destroy(string $id)
     {

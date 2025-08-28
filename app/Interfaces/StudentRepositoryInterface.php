@@ -2,6 +2,8 @@
 
 namespace App\Interfaces;
 
+use Illuminate\Http\Request;
+
 interface StudentRepositoryInterface
 {
     public function getNationalities();
@@ -31,6 +33,10 @@ interface StudentRepositoryInterface
     public function showStudent($id);
 
     public function uploadAttachment($request);
+
+    public function deleteAttachment($request);
+
+    public function downloadAttachment($student_name, $file_name);
 
     public function deleteStudent(int $id);
 }

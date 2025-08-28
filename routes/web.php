@@ -59,6 +59,8 @@ Route::group(
         /*  ============ Students Routes ============  */
         Route::resource('students', StudentController::class);
         Route::post('upload_attachment', [StudentController::class, 'uploadAttachment'])->name('students.upload_attachment');
+        Route::delete('delete_attachment', [StudentController::class, 'deleteAttachment'])->name('students.delete_attachment');
+        Route::get('download_attachment/{student_name}/{file_name}', [StudentController::class, 'downloadAttachment'])->name('students.download_attachment');
 
         /*  For laravel localization with livewire   */
         Livewire::setUpdateRoute(function ($handle) {

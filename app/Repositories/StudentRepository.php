@@ -120,7 +120,7 @@ class StudentRepository implements StudentRepositoryInterface
 
     public function getStudentById(int $id)
     {
-        return Student::findOrFail($id);
+        return Student::with(['images', 'grade', 'classroom', 'section', 'parent'])->findOrFail($id);
     }
 
     public function showStudent($id)
@@ -188,21 +188,13 @@ class StudentRepository implements StudentRepositoryInterface
         return back();
     }
 
-    public function deleteStudent(int $id)
-    {
-        $student = $this->getStudentById($id);
-        $student->delete();
-        flash()->success(__('tables.delete_msg'));
-        return back();
-    }
-
 
     public function uploadAttachment($request): \Illuminate\Http\RedirectResponse
     {
         if ($request->hasFile('photos')) {
             foreach ($request->photos as $file) {
                 $filename = $file->getClientOriginalName();
-                $path = 'attachments/students/' . $request->student_name;
+                $path = 'attachments/students/' . Str::slug($request->student_name);
 
                 $file->storeAs($path, $filename, 'upload_attachments');
 
@@ -214,6 +206,48 @@ class StudentRepository implements StudentRepositoryInterface
             }
         }
         flash()->success(__('tables.success_msg'));
+        return back();
+    }
+
+    public function deleteAttachment($request): \Illuminate\Http\RedirectResponse
+    {
+        try {
+            $image = Image::findOrFail($request->id);
+
+            // Delete file from storage
+            $filePath = public_path($image->url);
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
+
+            // Delete record from database
+            $image->delete();
+
+            flash()->success('تم حذف المرفق بنجاح');
+        } catch (\Exception $e) {
+            flash()->error('حدث خطأ أثناء حذف المرفق: ' . $e->getMessage());
+        }
+
+        return back();
+    }
+
+    public function downloadAttachment($student_name, $file_name)
+    {
+        $file = public_path('attachments/students/' . $student_name . '/' . $file_name);
+
+        if (file_exists($file)) {
+            return response()->download($file);
+        }
+
+        flash()->error('الملف غير موجود');
+        return back();
+    }
+
+    public function deleteStudent(int $id)
+    {
+        $student = $this->getStudentById($id);
+        $student->delete();
+        flash()->success(__('tables.delete_msg'));
         return back();
     }
 }
