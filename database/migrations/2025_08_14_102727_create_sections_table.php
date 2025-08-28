@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('sections', function (Blueprint $table) {
             $table->id();
-            $table->string('section_name');
+            $table->json('section_name');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->foreignId('grade_id')->constrained('grades')->cascadeOnDelete()->cascadeOnUpdate();
             $table->foreignId('classroom_id')->constrained('classrooms')->cascadeOnDelete()->cascadeOnUpdate();

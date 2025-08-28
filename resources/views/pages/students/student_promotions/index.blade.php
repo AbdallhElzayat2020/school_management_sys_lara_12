@@ -45,10 +45,7 @@
                                 <label for="section_id">{{ trans('students.section') }} : </label>
                                 <select class="custom-select mr-sm-2" name="section_id"></select>
                             </div>
-
                         </div>
-
-
 
 
                         <br>
@@ -78,7 +75,7 @@
                                 </select>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary">تاكيد</button>
+                        <button type="submit" class="btn btn-primary">{{ __('tables.save') }}</button>
                     </form>
 
                 </div>

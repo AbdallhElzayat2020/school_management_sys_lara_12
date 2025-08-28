@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
-            $table->string('class_name');
+            $table->json('class_name');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->foreignId('grade_id')->constrained('grades')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();

@@ -12,7 +12,7 @@ return new class extends Migration {
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
+            $table->json('name');
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->longText('notes')->nullable();
             $table->timestamps();

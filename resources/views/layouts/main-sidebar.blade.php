@@ -107,23 +107,11 @@
                         <ul id="students" class="collapse" data-parent="#sidebarnav">
                             <li><a href="{{ route('students.index') }}">{{ __('students.student_list') }} </a></li>
                             <li><a href="{{ route('students.create') }}">{{ __('students.add_student') }} </a></li>
+                            <li><a href="{{ route('student-promotion.index') }}">{{ __('dashboard.student_promotion') }} </a></li>
+                            <li><a href="{{ route('student-promotion.create') }}">قائمة الترقيات للطلاب</a></li>
                         </ul>
                     </li>
 
-                    <!-- menu item students_Promotions-->
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students_Promotions">
-                            <div class="pull-left">
-                                <i class="ti-calendar"></i>
-                                <span class="right-nav-text">{{ __('dashboard.student_promotion') }}</span>
-                            </div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="students_Promotions" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="{{ route('student-promotion.index') }}">{{ __('dashboard.student_promotion') }} </a></li>
-                        </ul>
-                    </li>
 
                     <!-- menu title -->
                     <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">Widgets, Forms & Tables</li>
@@ -189,20 +177,7 @@
                             <li><a href="faqs.html">faqs</a></li>
                         </ul>
                     </li>
-                    <!-- menu item Authentication-->
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#authentication">
-                            <div class="pull-left"><i class="ti-id-badge"></i><span
-                                    class="right-nav-text">Authentication</span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="authentication" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="login.html">login</a></li>
-                            <li><a href="register.html">register</a></li>
-                            <li><a href="lockscreen.html">Lock screen</a></li>
-                        </ul>
-                    </li>
+
                     <!-- menu item maps-->
                     <li>
                         <a href="maps.html"><i class="ti-location-pin"></i><span class="right-nav-text">maps</span>
