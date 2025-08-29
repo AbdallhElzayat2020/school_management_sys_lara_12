@@ -4,7 +4,7 @@ return [
     'student' => 'الطلاب',
     'students_management' => 'ادارة الطلاب',
     'student_list' => 'قائمة الطلاب',
-
+    'promote_students_list' => 'قائمة ترقية الطلاب',
     'name' => 'اسم الطالب',
     'name_ar' => 'الاسم باللغة العربية',
     'name_en' => 'الاسم باللغة الانجليزية',

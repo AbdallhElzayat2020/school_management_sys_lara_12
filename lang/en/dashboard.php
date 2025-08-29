@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     'school_management_system' => 'School Management System',
     'dashboard' => 'Dashboard',
     'welcome' => 'Welcome to the Dashboard',

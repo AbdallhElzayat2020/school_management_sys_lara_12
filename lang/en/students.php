@@ -4,7 +4,7 @@ return [
     'student' => 'Students',
     'students_management' => 'Student Management',
     'student_list' => 'Student List',
-
+    'promote_students_list' => 'Promote Students List',
     'personal_information' => 'personal information',
     'name' => 'Name',
     'name_ar' => 'name_ar',

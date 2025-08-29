@@ -95,20 +95,45 @@
                     </li>
 
                     <!-- menu item students-->
+                    <!-- students-->
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students">
-                            <div class="pull-left">
-                                <i class="ti-calendar"></i>
-                                <span class="right-nav-text">{{ __('students.students_management') }}</span>
-                            </div>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-menu"><i class="fas fa-user-graduate"></i>students
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
-                        <ul id="students" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="{{ route('students.index') }}">{{ __('students.student_list') }} </a></li>
-                            <li><a href="{{ route('students.create') }}">{{ __('students.add_student') }} </a></li>
-                            <li><a href="{{ route('student-promotion.index') }}">{{ __('dashboard.student_promotion') }} </a></li>
-                            <li><a href="{{ route('student-promotion.create') }}">قائمة الترقيات للطلاب</a></li>
+                        <ul id="students-menu" class="collapse">
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#Student_information">Student_information
+                                    <div class="pull-right"><i class="ti-plus"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <ul id="Student_information" class="collapse">
+                                    <li><a href="{{route('students.create')}}">{{trans('students.add_student')}}</a></li>
+                                    <li><a href="{{route('students.index')}}">{{trans('students.student_list')}}</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#Students_upgrade">{{trans('dashboard.student_promotion')}}
+                                    <div class="pull-right"><i class="ti-plus"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <ul id="Students_upgrade" class="collapse">
+                                    <li><a href="{{route('student-promotion.index')}}">{{trans('students.promote_students_list')}}</a></li>
+                                    <li><a href="{{route('student-promotion.create')}}">{{trans('dashboard.student_promotion')}}</a></li>
+                                </ul>
+                            </li>
+
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#Graduate students">Graduate_students
+                                    <div class="pull-right"><i class="ti-plus"></i></div>
+                                    <div class="clearfix"></div>
+                                </a>
+                                <ul id="Graduate students" class="collapse">
+                                    <li><a href="{{route('graduated-student.create')}}">add_Graduate</a></li>
+                                    <li><a href="{{route('graduated-student.index')}}">list_Graduate</a></li>
+                                </ul>
+                            </li>
                         </ul>
                     </li>
 
@@ -152,29 +177,6 @@
                             <li><a href="data-html-table.html">Data html table</a></li>
                             <li><a href="data-local.html">Data local</a></li>
                             <li><a href="data-table.html">Data table</a></li>
-                        </ul>
-                    </li>
-                    <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">More Pages</li>
-                    <!-- menu item Custom pages-->
-                    <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#custom-page">
-                            <div class="pull-left"><i class="ti-file"></i><span class="right-nav-text">Custom
-                                    pages</span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="custom-page" class="collapse" data-parent="#sidebarnav">
-                            <li><a href="projects.html">projects</a></li>
-                            <li><a href="project-summary.html">Projects summary</a></li>
-                            <li><a href="profile.html">profile</a></li>
-                            <li><a href="app-contacts.html">App contacts</a></li>
-                            <li><a href="contacts.html">Contacts</a></li>
-                            <li><a href="file-manager.html">file manager</a></li>
-                            <li><a href="invoice.html">Invoice</a></li>
-                            <li><a href="blank.html">Blank page</a></li>
-                            <li><a href="layout-container.html">layout container</a></li>
-                            <li><a href="error.html">Error</a></li>
-                            <li><a href="faqs.html">faqs</a></li>
                         </ul>
                     </li>
 
