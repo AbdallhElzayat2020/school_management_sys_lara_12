@@ -44,19 +44,12 @@
                                                 <td>{{$promotion->toClassroom->class_name}}</td>
                                                 <td>{{$promotion->toSection->section_name}}</td>
                                                 <td>
-                                                    <a href="{{route('students.edit',$promotion->id)}}"
-                                                       class="btn btn-info btn-sm" role="button" aria-pressed="true"><i
-                                                            class="fa fa-edit"></i></a>
-                                                    <button type="button" class="btn btn-danger btn-sm"
-                                                            data-toggle="modal"
-                                                            data-target="#Delete_Student{{ $promotion->id }}"
-                                                            title="{{ trans('tables.delete') }}"><i
-                                                            class="fa fa-trash"></i></button>
-                                                    <a href=""
-                                                       class="btn btn-warning btn-sm" role="button" aria-pressed="true"><i class="far fa-eye"></i></a>
+                                                    <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#Delete_one{{$promotion->id}}">ارجاع الطالب</button>
+                                                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#delete_all">تخرج الطالب</button>
                                                 </td>
                                             </tr>
                                         @include('pages.students.student_promotions.delete_all')
+                                        @include('pages.students.student_promotions.delete_one')
                                         @endforeach
                                     </table>
                                 </div>

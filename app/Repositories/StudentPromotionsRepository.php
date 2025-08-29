@@ -74,16 +74,6 @@ class StudentPromotionsRepository implements StudentPromotionsInterface
         }
     }
 
-    public function edit($id)
-    {
-        // TODO: Implement edit() method.
-    }
-
-    public function update($id, $request)
-    {
-        // TODO: Implement update() method.
-    }
-
     public function destroy($request)
     {
         try {
@@ -112,6 +102,20 @@ class StudentPromotionsRepository implements StudentPromotionsInterface
                 flash()->success(__('tables.success_msg'));
                 return redirect()->back();
 
+            } else {
+                $promotion = Promotion::findOrFail($request->id);
+                if (!$promotion) {
+                    abort(404);
+                }
+                Student::where('id', $promotion->student_id)->update([
+                    'grade_id' => $promotion->from_grade_id,
+                    'classroom_id' => $promotion->from_classroom_id,
+                    'section_id' => $promotion->from_section_id,
+                ]);
+                $promotion->delete();
+                DB::commit();
+                flash()->success(__('tables.success_msg'));
+                return redirect()->back();
             }
 
         } catch (\Exception $e) {
