@@ -17,7 +17,6 @@ class GraduatedController extends Controller
         $this->graduatedStudentRepository = $graduatedStudentRepository;
     }
 
-
     public function index()
     {
         $students = $this->graduatedStudentRepository->index();
@@ -36,7 +35,6 @@ class GraduatedController extends Controller
     {
         return $this->graduatedStudentRepository->softDelete($request);
     }
-
 
 
     public function update(string $id): \Illuminate\Http\RedirectResponse
