@@ -1,7 +1,5 @@
 @extends('layouts.master')
-@session('title','Fees Invoices')
-
-@endsession
+@section('title','add fee invoice')
 @section('content')
     <!-- row -->
     <div class="row">
@@ -32,10 +30,10 @@
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{$Fee_invoice->student->name}}</td>
-                                                <td>{{$Fee_invoice->fees->title}}</td>
+                                                <td>{{$Fee_invoice->fee->title}}</td>
                                                 <td>{{ number_format($Fee_invoice->amount, 2) }}</td>
-                                                <td>{{$Fee_invoice->grade->Name}}</td>
-                                                <td>{{$Fee_invoice->classroom->Name_Class}}</td>
+                                                <td>{{$Fee_invoice->grade->name}}</td>
+                                                <td>{{$Fee_invoice->classroom->class_name}}</td>
                                                 <td>{{$Fee_invoice->description}}</td>
                                                 <td>
                                                     <a href="#" class="btn btn-info btn-sm" role="button" aria-pressed="true"><i class="fa fa-edit"></i></a>
@@ -55,4 +53,5 @@
     <!-- row closed -->
 @endsection
 @section('js')
+
 @endsection

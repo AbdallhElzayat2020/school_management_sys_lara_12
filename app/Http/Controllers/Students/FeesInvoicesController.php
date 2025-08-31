@@ -18,7 +18,8 @@ class FeesInvoicesController extends Controller
 
     public function index()
     {
-        //
+        $Fee_invoices = $this->feesInvoices->index();
+        return view('pages.students.feesInvoices.index', compact('Fee_invoices'));
     }
 
 
@@ -30,12 +31,12 @@ class FeesInvoicesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        return $this->feesInvoices->store($request);
     }
 
     public function show(string $id)
     {
-        //
+        return $this->feesInvoices->show($id);
     }
 
 

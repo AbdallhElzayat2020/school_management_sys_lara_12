@@ -62,7 +62,7 @@
                                     <option selected disabled>{{ trans('parents.Choose') }}...</option>
                                     @foreach ($classrooms as $classroom)
                                         <option value="{{ $classroom->id }}"
-                                                @if (old('classroom_id', $fee->classroom_id) == $classroom->id) selected @endif>{{ $classroom->name_class }}
+                                                @if (old('classroom_id', $fee->classroom_id) == $classroom->id) selected @endif>{{ $classroom->class_name }}
                                         </option>
                                     @endforeach
                                 </select>

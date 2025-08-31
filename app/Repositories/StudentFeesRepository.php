@@ -44,7 +44,6 @@ class StudentFeesRepository implements StudentFeesInterface
         }
     }
 
-
     public function edit($id)
     {
         $fee = Fees::findOrFail($id);
