@@ -34,6 +34,7 @@ class StudentFeesRepository implements StudentFeesInterface
                 'classroom_id' => $request->classroom_id,
                 'amount' => $request->amount,
                 'academic_year' => $request->academic_year,
+                'fee_type' => $request->fee_type,
                 'notes' => $request->notes,
             ]);
             flash()->success('Added Successfully');
@@ -65,6 +66,7 @@ class StudentFeesRepository implements StudentFeesInterface
                 'classroom_id' => $request->classroom_id,
                 'amount' => $request->amount,
                 'academic_year' => $request->academic_year,
+                'fee_type' => $request->fee_type,
                 'notes' => $request->notes,
             ]);
             flash()->success('Updated Successfully');

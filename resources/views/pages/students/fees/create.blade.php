@@ -22,21 +22,20 @@
                         <div class="form-row">
                             <div class="form-group col">
                                 <label for="inputEmail4">الاسم باللغة العربية</label>
-                                <input type="text" value="{{ old('title.ar') }}" value="{{ old('title.ar') }}"
-                                    name="title[ar]" class="form-control">
+                                <input type="text" value="{{ old('title.ar') }}"
+                                       name="title[ar]" class="form-control">
                             </div>
 
                             <div class="form-group col">
                                 <label for="inputEmail4">الاسم باللغة الانجليزية</label>
-                                <input type="text" value="{{ old('title.en') }}" name="title[en]"
-                                    value="{{ old('title.en') }}" class="form-control">
+                                <input type="text" value="{{ old('title.en') }}" name="title[en]" class="form-control">
                             </div>
 
 
                             <div class="form-group col">
                                 <label for="inputEmail4">المبلغ</label>
-                                <input type="number" value="{{ old('amount') }}" name="amount" value="{{ old('amount') }}"
-                                    class="form-control">
+                                <input type="number" value="{{ old('amount') }}" name="amount"
+                                       class="form-control">
                             </div>
 
                         </div>
@@ -50,16 +49,14 @@
                                     <option selected disabled>{{ trans('parents.Choose') }}...</option>
                                     @foreach ($grades as $grade)
                                         <option value="{{ $grade->id }}"
-                                            @if (old('grade_id') == $grade->id) selected @endif>{{ $grade->name }}</option>
+                                                @if (old('grade_id') == $grade->id) selected @endif>{{ $grade->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="form-group col">
                                 <label for="inputZip">{{ __('students.classrooms') }}</label>
-                                <select class="custom-select mr-sm-2" name="classroom_id">
-
-                                </select>
+                                <select class="custom-select mr-sm-2" name="classroom_id"></select>
                             </div>
                             <div class="form-group col">
                                 <label for="inputZip">السنة الدراسية</label>
@@ -69,11 +66,20 @@
                                         $current_year = date('Y');
                                     @endphp
                                     @for ($year = $current_year; $year <= $current_year + 1; $year++)
-                                        <option value="{{ $year }}"
-                                            @if (old('academic_year') == $year) selected @endif>{{ $year }}</option>
+                                        <option value="{{ $year }}" @if (old('academic_year') == $year) selected @endif>{{ $year }}</option>
                                     @endfor
                                 </select>
                             </div>
+
+                            <div class="form-group col">
+                                <label for="inputZip">نوع الرسوم</label>
+                                <select class="custom-select mr-sm-2" name="fee_type">
+                                    <option value="1">رسوم دراسية</option>
+                                    <option value="2">رسوم باص</option>
+                                    <option value="3">رسوم زي او ملابس</option>
+                                </select>
+                            </div>
+
                         </div>
 
                         <div class="form-group">

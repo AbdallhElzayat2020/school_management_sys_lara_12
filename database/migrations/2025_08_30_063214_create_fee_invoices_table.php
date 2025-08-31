@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Grade;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -11,14 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('fees', function (Blueprint $table) {
+        Schema::create('fee_invoices', function (Blueprint $table) {
             $table->id();
-            $table->json('title');
-            $table->decimal('amount', 10, 2);
+            $table->date('invoice_date');
+            $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
             $table->foreignId('grade_id')->constrained('grades')->onDelete('cascade');
             $table->foreignId('classroom_id')->constrained('classrooms')->onDelete('cascade');
-            $table->year('academic_year');
-            $table->longText('notes')->nullable();
+            $table->foreignId('fee_id')->constrained('fees')->onDelete('cascade');
+            $table->decimal('amount', 10, 2);
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('fees');
+        Schema::dropIfExists('fee_invoices');
     }
 };

@@ -12,6 +12,7 @@ use App\Http\Controllers\Students\StudentController;
 use App\Http\Controllers\Students\StudentPromotionsController;
 use App\Http\Controllers\Students\GraduatedController;
 use App\Http\Controllers\Students\FeesController;
+use App\Http\Controllers\Students\FeesInvoicesController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -70,6 +71,10 @@ Route::group(
 
         /*  ============ student-Fees Routes ============  */
         Route::resource('student-fees', FeesController::class);
+
+        /*  ============ FeesInvoices Routes ============  */
+        Route::resource('fees-invoices', FeesInvoicesController::class);
+
 
         /*  For laravel localization with livewire   */
         Livewire::setUpdateRoute(function ($handle) {

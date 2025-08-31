@@ -19,6 +19,7 @@ class Fees extends Model
         'grade_id',
         'classroom_id',
         'academic_year',
+        'fee_type',
         'notes',
     ];
 

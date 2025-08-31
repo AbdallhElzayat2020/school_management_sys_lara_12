@@ -30,14 +30,14 @@
                             <div class="form-group col">
                                 <label for="inputEmail4">الاسم باللغة الانجليزية</label>
                                 <input type="text" value="{{ old('title.en', $fee->getTranslation('title', 'en')) }}"
-                                    name="title[en]" class="form-control">
+                                       name="title[en]" class="form-control">
                             </div>
 
 
                             <div class="form-group col">
                                 <label for="inputEmail4">المبلغ</label>
                                 <input type="number" value="{{ old('amount', $fee->amount) }}" name="amount"
-                                    class="form-control">
+                                       class="form-control">
                             </div>
 
                         </div>
@@ -51,7 +51,7 @@
                                     <option selected disabled>{{ trans('parents.Choose') }}...</option>
                                     @foreach ($grades as $grade)
                                         <option value="{{ $grade->id }}"
-                                            @if (old('grade_id', $fee->grade_id) == $grade->id) selected @endif>{{ $grade->name }}</option>
+                                                @if (old('grade_id', $fee->grade_id) == $grade->id) selected @endif>{{ $grade->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -62,7 +62,7 @@
                                     <option selected disabled>{{ trans('parents.Choose') }}...</option>
                                     @foreach ($classrooms as $classroom)
                                         <option value="{{ $classroom->id }}"
-                                            @if (old('classroom_id', $fee->classroom_id) == $classroom->id) selected @endif>{{ $classroom->name_class }}
+                                                @if (old('classroom_id', $fee->classroom_id) == $classroom->id) selected @endif>{{ $classroom->name_class }}
                                         </option>
                                     @endforeach
                                 </select>
@@ -76,10 +76,20 @@
                                     @endphp
                                     @for ($year = $current_year; $year <= $current_year + 1; $year++)
                                         <option value="{{ $year }}"
-                                            @if (old('academic_year', $fee->academic_year) == $year) selected @endif>{{ $year }}</option>
+                                                @if (old('academic_year', $fee->academic_year) == $year) selected @endif>{{ $year }}</option>
                                     @endfor
                                 </select>
                             </div>
+
+                            <div class="form-group col">
+                                <label for="inputZip">نوع الرسوم</label>
+                                <select class="custom-select mr-sm-2" name="fee_type">
+                                    <option value="1">رسوم دراسية</option>
+                                    <option value="2">رسوم باص</option>
+                                    <option value="3">رسوم زي او ملابس</option>
+                                </select>
+                            </div>
+
                         </div>
 
                         <div class="form-group">

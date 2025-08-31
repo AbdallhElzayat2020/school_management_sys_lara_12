@@ -30,6 +30,7 @@ class StoreFeesRequest extends FormRequest
             'amount' => 'required|min:0',
             'academic_year' => 'required|date_format:Y',
             'notes' => 'nullable|string',
+            'fee_type' => 'required|integer',
         ];
     }
 }
