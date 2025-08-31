@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->decimal('debit', 10, 2)->nullable();
             $table->decimal('credit', 10, 2)->nullable();
             $table->foreignId('fee_invoice_id')->nullable()->references('id')->on('fee_invoices')->onDelete('cascade');
+            $table->foreignId('receipt_student_id')->nullable()->references('id')->on('receipt_students')->onDelete('cascade');
             $table->foreignId('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->string('type');
             $table->date('date');

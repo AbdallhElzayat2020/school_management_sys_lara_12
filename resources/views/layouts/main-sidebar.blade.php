@@ -98,14 +98,14 @@
                     <!-- students-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-menu"><i
-                                class="fas fa-user-graduate"></i>students
+                                class="fas fa-user-graduate"></i>الطلاب
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="students-menu" class="collapse">
                             <li>
                                 <a href="javascript:void(0);" data-toggle="collapse"
-                                    data-target="#Student_information">Student_information
+                                   data-target="#Student_information">معلومات الطلاب
                                     <div class="pull-right"><i class="ti-plus"></i></div>
                                     <div class="clearfix"></div>
                                 </a>
@@ -121,7 +121,7 @@
 
                             <li>
                                 <a href="javascript:void(0);" data-toggle="collapse"
-                                    data-target="#Students_upgrade">{{ trans('dashboard.student_promotion') }}
+                                   data-target="#Students_upgrade">{{ trans('dashboard.student_promotion') }}
                                     <div class="pull-right"><i class="ti-plus"></i></div>
                                     <div class="clearfix"></div>
                                 </a>
@@ -137,13 +137,13 @@
 
                             <li>
                                 <a href="javascript:void(0);" data-toggle="collapse"
-                                    data-target="#Graduate students">Graduate_students
+                                   data-target="#Graduate students">الطلاب الخرجين
                                     <div class="pull-right"><i class="ti-plus"></i></div>
                                     <div class="clearfix"></div>
                                 </a>
                                 <ul id="Graduate students" class="collapse">
-                                    <li><a href="{{ route('graduated-student.create') }}">add_Graduate</a></li>
-                                    <li><a href="{{ route('graduated-student.index') }}">list_Graduate</a></li>
+                                    <li><a href="{{ route('graduated-student.create') }}">اضافة خريج</a></li>
+                                    <li><a href="{{ route('graduated-student.index') }}">الطلاب المتخرجين</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -154,13 +154,13 @@
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#Accounts-menu">
                             <div class="pull-left"><i class="fas fa-money-bill-wave-alt"></i><span
-                                    class="right-nav-text">Accounts</span></div>
+                                    class="right-nav-text">الحسابات</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="Accounts-menu" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{ route('student-fees.index') }}">Fees</a> </li>
-                            <li> <a href="{{ route('student-fees.create') }}">Add Fee</a> </li>
+                            <li><a href="{{ route('student-fees.index') }}">قائمة الرسوم</a></li>
+                            <li><a href="{{ route('student-fees.create') }}">اضافة رسوم</a></li>
                         </ul>
                     </li>
 

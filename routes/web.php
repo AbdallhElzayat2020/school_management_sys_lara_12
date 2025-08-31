@@ -1,18 +1,20 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Livewire\Livewire;
-use App\Http\Controllers\Classrooms\ClassroomController;
-use App\Http\Controllers\Grades\GradeController;
-use App\Http\Controllers\Parents\StudentParentController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Grades\GradeController;
+use App\Http\Controllers\Students\FeesController;
 use App\Http\Controllers\Section\SectionController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\Students\StudentController;
-use App\Http\Controllers\Students\StudentPromotionsController;
 use App\Http\Controllers\Students\GraduatedController;
-use App\Http\Controllers\Students\FeesController;
+use App\Http\Controllers\Classrooms\ClassroomController;
+use App\Http\Controllers\Parents\StudentParentController;
 use App\Http\Controllers\Students\FeesInvoicesController;
+use App\Http\Controllers\Students\StudentPromotionsController;
+use App\Http\Controllers\Students\ReceiptStudentsController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -74,6 +76,9 @@ Route::group(
 
         /*  ============ FeesInvoices Routes ============  */
         Route::resource('fees-invoices', FeesInvoicesController::class);
+
+        /*  ============ FeesInvoices Routes ============  */
+        Route::resource('recept-students', ReceiptStudentsController::class);
 
 
         /*  For laravel localization with livewire   */

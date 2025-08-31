@@ -16,6 +16,7 @@ class StudentAccount extends Model
         'credit',
         'description',
         'type',
-        'date'
+        'date',
+        'receipt_student_id'
     ];
 }
