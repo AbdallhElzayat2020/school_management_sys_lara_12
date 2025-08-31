@@ -25,6 +25,7 @@ class SectionsSeeder extends Seeder
                 'status' => 'active',
                 'grade_id' => Grade::all()->random()->id,
             ],
+
             [
                 'section_name' => [
                     'ar' => 'الصف الثاني',
@@ -34,37 +35,11 @@ class SectionsSeeder extends Seeder
                 'status' => 'active',
                 'grade_id' => Grade::all()->random()->id,
             ],
+
             [
                 'section_name' => [
                     'ar' => 'الصف الثالث',
                     'en' => 'Third Grade'
-                ],
-                'classroom_id' => Classroom::all()->random()->id,
-                'status' => 'active',
-                'grade_id' => Grade::all()->random()->id,
-            ],
-            [
-                'section_name' => [
-                    'ar' => 'الصف الرابع',
-                    'en' => 'Fourth Grade'
-                ],
-                'classroom_id' => Classroom::all()->random()->id,
-                'status' => 'active',
-                'grade_id' => Grade::all()->random()->id,
-            ],
-            [
-                'section_name' => [
-                    'ar' => 'الصف الخامس',
-                    'en' => 'Fifth Grade'
-                ],
-                'classroom_id' => Classroom::all()->random()->id,
-                'status' => 'active',
-                'grade_id' => Grade::all()->random()->id,
-            ],
-            [
-                'section_name' => [
-                    'ar' => 'الصف السادس',
-                    'en' => 'Sixth Grade'
                 ],
                 'classroom_id' => Classroom::all()->random()->id,
                 'status' => 'active',

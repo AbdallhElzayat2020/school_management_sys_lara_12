@@ -45,32 +45,7 @@ class ClassroomsSeeder extends Seeder
                 'grade_id' => Grade::all()->random()->id,
             ],
 
-            [
-                'class_name' => [
-                    'ar' => 'الصف الرابع',
-                    'en' => 'Fourth Grade'
-                ],
-                'status' => 'active',
-                'grade_id' => Grade::all()->random()->id,
-            ],
 
-            [
-                'class_name' => [
-                    'ar' => 'الصف الخامس',
-                    'en' => 'Fifth Grade'
-                ],
-                'status' => 'active',
-                'grade_id' => Grade::all()->random()->id,
-            ],
-
-            [
-                'class_name' => [
-                    'ar' => 'الصف السادس',
-                    'en' => 'Sixth Grade'
-                ],
-                'status' => 'active',
-                'grade_id' => Grade::all()->random()->id,
-            ]
         ];
 
         foreach ($classrooms as $classroom) {

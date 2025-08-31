@@ -42,18 +42,18 @@ class FeesInvoicesController extends Controller
 
     public function edit(string $id)
     {
-        //
+        return $this->feesInvoices->edit($id);
     }
 
 
     public function update(Request $request, string $id)
     {
-        //
+        return $this->feesInvoices->update($id, $request);
     }
 
 
     public function destroy(string $id)
     {
-        //
+        return $this->feesInvoices->destroy($id);
     }
 }

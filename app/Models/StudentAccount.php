@@ -10,10 +10,12 @@ class StudentAccount extends Model
 
     protected $fillable = [
         'student_id',
-        'grade_id',
-        'classroom_id',
+        'fee_id',
+        'fee_invoice_id',
         'debit',
         'credit',
         'description',
+        'type',
+        'date'
     ];
 }

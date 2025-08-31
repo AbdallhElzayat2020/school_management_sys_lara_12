@@ -38,14 +38,6 @@ class GradesSeeder extends Seeder
                 ],
                 'status' => 'active',
             ],
-
-            [
-                'name' => [
-                    'ar' => 'المرحلة العليا',
-                    'en' => 'University'
-                ],
-                'status' => 'active',
-            ]
         ];
 
 
