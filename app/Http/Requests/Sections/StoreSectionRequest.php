@@ -20,7 +20,7 @@ class StoreSectionRequest extends FormRequest
             'section_name.en' => ['required', 'string', 'min:1', 'max:255'],
             'grade_id' => ['required', 'exists:grades,id'],
             'classroom_id' => ['required', 'exists:classrooms,id'],
-            'teacher_id' => ['required', 'exists:teachers,id'],
+            'teacher_id' => ['nullable', 'exists:teachers,id'],
         ];
     }
 

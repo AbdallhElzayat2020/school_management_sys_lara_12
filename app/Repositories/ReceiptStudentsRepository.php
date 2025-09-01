@@ -27,6 +27,8 @@ class ReceiptStudentsRepository implements ReceiptStudentsInterface
         /*
          * Make a validation before store
          * */
+
+
         DB::beginTransaction();
         try {
 
@@ -75,6 +77,8 @@ class ReceiptStudentsRepository implements ReceiptStudentsInterface
         /*
          * Make a validation before Update
          * */
+
+
         DB::beginTransaction();
         try {
 
@@ -105,8 +109,6 @@ class ReceiptStudentsRepository implements ReceiptStudentsInterface
             DB::commit();
             flash()->success('added successfully');
             return redirect()->route('recept-students.index');
-
-            //
         } catch (\Exception $exception) {
             DB::rollBack();
             return redirect()->back()->withErrors(['error' => $exception->getMessage()]);

@@ -95,6 +95,7 @@
                     </li>
 
                     <!-- menu item students-->
+
                     <!-- students-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-menu"><i
@@ -149,7 +150,6 @@
                         </ul>
                     </li>
 
-
                     <!-- Accounts-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#Accounts-menu">
@@ -161,6 +161,19 @@
                         <ul id="Accounts-menu" class="collapse" data-parent="#sidebarnav">
                             <li><a href="{{ route('student-fees.index') }}">قائمة الرسوم</a></li>
                             <li><a href="{{ route('student-fees.create') }}">اضافة رسوم</a></li>
+                        </ul>
+                    </li>
+
+                    <!-- Attendance-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Attendance-icon">
+                            <div class="pull-left"><i class="fas fa-calendar-alt"></i><span
+                                    class="right-nav-text">الحضور والغياب</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="Attendance-icon" class="collapse" data-parent="#sidebarnav">
+                            <li><a href="{{ route('attendance.index') }}">قائمة الطلاب</a></li>
                         </ul>
                     </li>
 
