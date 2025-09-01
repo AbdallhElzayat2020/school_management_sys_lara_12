@@ -8,7 +8,7 @@ use App\Models\Subject;
 
 class SubjectsRepository implements SubjectsInterface
 {
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
         $subjects = Subject::paginate();
 
@@ -17,10 +17,13 @@ class SubjectsRepository implements SubjectsInterface
         ]);
     }
 
-    public function create() {}
-
-    public function store($request)
+    public function create()
     {
+    }
+
+    public function store($request): \Illuminate\Http\JsonResponse
+    {
+        // validate
         Subject::create([
             'name' => [
                 'en' => $request->name['en'],
@@ -41,8 +44,9 @@ class SubjectsRepository implements SubjectsInterface
         // body
     }
 
-    public function update($id, $request)
+    public function update($id, $request): \Illuminate\Http\JsonResponse
     {
+        // validate
         $subject = Subject::findOrFail($id);
         $subject->update([
             'name' => [
@@ -59,7 +63,7 @@ class SubjectsRepository implements SubjectsInterface
         ]);
     }
 
-    public function destroy($id)
+    public function destroy($id): \Illuminate\Http\JsonResponse
     {
         $subject = Subject::findOrFail($id);
         $subject->delete();

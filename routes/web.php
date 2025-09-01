@@ -3,11 +3,13 @@
 use Livewire\Livewire;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Exams\ExamController;
 use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\Students\FeesController;
 use App\Http\Controllers\Section\SectionController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\Students\StudentController;
+use App\Http\Controllers\Subjects\SubjectController;
 use App\Http\Controllers\Students\GraduatedController;
 use App\Http\Controllers\Students\AttendanceController;
 use App\Http\Controllers\Classrooms\ClassroomController;
@@ -16,7 +18,6 @@ use App\Http\Controllers\Students\FeesInvoicesController;
 use App\Http\Controllers\Students\ReceiptStudentsController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Students\StudentPromotionsController;
-use App\Http\Controllers\Subjects\SubjectController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -90,6 +91,9 @@ Route::group(
 
         /*  ============ Subjects Routes ============  */
         Route::resource('subjects', SubjectController::class);
+
+        /*  ============ Exams Routes ============  */
+        Route::resource('exams', ExamController::class);
 
         /*  For laravel localization with livewire   */
         Livewire::setUpdateRoute(function ($handle) {
