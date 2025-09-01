@@ -22,13 +22,13 @@ class QuizzeController extends Controller
 
     public function store(Request $request)
     {
-        // validate
+        // validate with Request
         return $this->quizzeRepository->store($request);
     }
 
     public function update(Request $request, string $id)
     {
-        // validate
+        // validate with Request
         return $this->quizzeRepository->update($request, $id);
     }
 

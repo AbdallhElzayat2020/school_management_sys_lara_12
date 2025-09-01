@@ -11,6 +11,7 @@ use App\Http\Controllers\Section\SectionController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\Students\StudentController;
 use App\Http\Controllers\Subjects\SubjectController;
+use App\Http\Controllers\Questions\QuestionController;
 use App\Http\Controllers\Students\GraduatedController;
 use App\Http\Controllers\Students\AttendanceController;
 use App\Http\Controllers\Classrooms\ClassroomController;
@@ -93,9 +94,11 @@ Route::group(
         /*  ============ Subjects Routes ============  */
         Route::resource('subjects', SubjectController::class);
 
-
         /*  ============ Quizzes Routes ============  */
         Route::resource('quizzes', QuizzeController::class);
+
+        /*  ============ Questions Routes ============  */
+        Route::resource('questions', QuestionController::class);
 
 
 
