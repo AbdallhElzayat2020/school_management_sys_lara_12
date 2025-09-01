@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Exams\ExamController;
 use App\Http\Controllers\Grades\GradeController;
 use App\Http\Controllers\Students\FeesController;
+use App\Http\Controllers\Quizzes\QuizzeController;
 use App\Http\Controllers\Section\SectionController;
 use App\Http\Controllers\Teacher\TeacherController;
 use App\Http\Controllers\Students\StudentController;
@@ -92,8 +93,11 @@ Route::group(
         /*  ============ Subjects Routes ============  */
         Route::resource('subjects', SubjectController::class);
 
-        /*  ============ Exams Routes ============  */
-        Route::resource('exams', ExamController::class);
+
+        /*  ============ Quizzes Routes ============  */
+        Route::resource('quizzes', QuizzeController::class);
+
+
 
         /*  For laravel localization with livewire   */
         Livewire::setUpdateRoute(function ($handle) {

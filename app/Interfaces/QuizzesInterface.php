@@ -2,7 +2,7 @@
 
 namespace App\Interfaces;
 
-interface ExamInterface
+interface QuizzesInterface
 {
     public function index();
 
