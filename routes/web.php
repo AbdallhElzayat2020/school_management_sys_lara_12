@@ -16,7 +16,7 @@ use App\Http\Controllers\Students\FeesInvoicesController;
 use App\Http\Controllers\Students\ReceiptStudentsController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use App\Http\Controllers\Students\StudentPromotionsController;
-
+use App\Http\Controllers\Subjects\SubjectController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -72,6 +72,8 @@ Route::group(
 
         /*  ============ student-promotion Routes ============  */
         Route::resource('student-promotion', StudentPromotionsController::class);
+
+        /*  ============ graduated-student Routes ============  */
         Route::resource('graduated-student', GraduatedController::class);
 
         /*  ============ student-Fees Routes ============  */
@@ -86,6 +88,8 @@ Route::group(
         /*  ============ Attendance Routes ============  */
         Route::resource('attendance', AttendanceController::class);
 
+        /*  ============ Subjects Routes ============  */
+        Route::resource('subjects', SubjectController::class);
 
         /*  For laravel localization with livewire   */
         Livewire::setUpdateRoute(function ($handle) {

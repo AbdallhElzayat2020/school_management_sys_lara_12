@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources;
 
-use App\Models\Attendance;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AttendanceResource extends JsonResource
+class SubjectsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,17 +15,14 @@ class AttendanceResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        /** @var Attendance $this ->resource */
+        /** @var Subject $this ->resource */
         return [
             'id' => $this->id,
-            'student_name' => $this->student->name,
+            'subject_name' => $this->name,
             'grade_name' => $this->grade->name,
-            'classroom_name' => $this->classroom->name,
-            'section_name' => $this->section->name,
+            'classroom_name' => $this->classroom->class_name,
             'teacher_name' => $this->teacher->name,
-            'attendance_date' => $this->attendance_date,
-            'attendance_day' => $this->attendance_date->format('l'),
-            'status' => $this->status,
+            'created_by' => $this->teacher->name,
         ];
     }
 }
