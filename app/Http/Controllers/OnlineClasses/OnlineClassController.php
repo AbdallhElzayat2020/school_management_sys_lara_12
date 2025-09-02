@@ -24,12 +24,14 @@ class OnlineClassController extends Controller
 
     public function store(Request $request)
     {
+        // validate request
         return $this->onlineClassRepository->store($request);
     }
 
 
     public function update(Request $request, string $id)
     {
+        // validate request
         return $this->onlineClassRepository->update($request, $id);
     }
 

@@ -48,7 +48,7 @@ class ZoomService
         $meetingId = Zoom::getMeeting($id);
         Zoom::deleteMeeting($meetingId);
 
-        OnlineClass::destroy($id);
+        OnlineClass::where('template_id', $id)->delete();
 
         return response()->json([
             'message' => 'Online class deleted successfully.',
