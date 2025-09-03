@@ -18,28 +18,29 @@ class ParentSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('my_parents')->delete();
-        $my_parents = new MyParent();
-        $my_parents->email = 'abdallh@gmail.com';
-        $my_parents->password = Hash::make('12345678');
-        $my_parents->name_father = ['en' => 'abdallh', 'ar' => 'عبد الله'];
-        $my_parents->national_id_father = '1234567810';
-        $my_parents->passport_id_father = '1234567810';
-        $my_parents->phone_father = '1234567810';
-        $my_parents->job_father = ['en' => 'programmer', 'ar' => 'مبرمج'];
-        $my_parents->nationality_father_id = Nationalitie::all()->unique()->random()->id;
-        $my_parents->blood_type_father_id = TypeBlood::all()->unique()->random()->id;
-        $my_parents->religion_father_id = Religion::all()->unique()->random()->id;
-        $my_parents->address_father = 'القاهرة';
-        $my_parents->name_mother = ['en' => 'SS', 'ar' => 'سس'];
-        $my_parents->national_id_mother = '1234567810';
-        $my_parents->passport_id_mother = '1234567810';
-        $my_parents->phone_mother = '1234567810';
-        $my_parents->job_mother = ['en' => 'Teacher', 'ar' => 'معلمة'];
-        $my_parents->nationality_mother_id = Nationalitie::all()->unique()->random()->id;
-        $my_parents->blood_type_mother_id = TypeBlood::all()->unique()->random()->id;
-        $my_parents->religion_mother_id = Religion::all()->unique()->random()->id;
-        $my_parents->address_mother = 'القاهرة';
-        $my_parents->save();
+        MyParent::updateOrCreate(
+            ['email' => 'abdallh@gmail.com'],
+            [
+                'password' => Hash::make('12345678'),
+                'name_father' => ['en' => 'abdallh', 'ar' => 'عبد الله'],
+                'national_id_father' => '1234567810',
+                'passport_id_father' => '1234567810',
+                'phone_father' => '1234567810',
+                'job_father' => ['en' => 'programmer', 'ar' => 'مبرمج'],
+                'nationality_father_id' => Nationalitie::all()->unique()->random()->id,
+                'blood_type_father_id' => TypeBlood::all()->unique()->random()->id,
+                'religion_father_id' => Religion::all()->unique()->random()->id,
+                'address_father' => 'القاهرة',
+                'name_mother' => ['en' => 'SS', 'ar' => 'سس'],
+                'national_id_mother' => '1234567810',
+                'passport_id_mother' => '1234567810',
+                'phone_mother' => '1234567810',
+                'job_mother' => ['en' => 'Teacher', 'ar' => 'معلمة'],
+                'nationality_mother_id' => Nationalitie::all()->unique()->random()->id,
+                'blood_type_mother_id' => TypeBlood::all()->unique()->random()->id,
+                'religion_mother_id' => Religion::all()->unique()->random()->id,
+                'address_mother' => 'القاهرة',
+            ]
+        );
     }
 }

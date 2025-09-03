@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             SpecializationSeeder::class,
             ParentSeeder::class,
             StudentSeeder::class,
+            SettingSeeder::class,
         ]);
     }
 }
